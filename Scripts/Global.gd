@@ -4,8 +4,58 @@ var current_scene = null
 
 enum WEAPON {
 	sword
+	axe
 	mace
+	big_sword
 	unarmed
+}
+
+var weapon_config = {
+	WEAPON.sword: {
+		"speed": 1,
+		"sprite": preload("res://Assets/Sprites/weapon_regular_sword.png"),
+		"damage": 20,
+		"reach": 0,
+		"sound": "slash",
+		"name": "Sword",
+		"restricted": false
+	},
+	WEAPON.axe: {
+		"speed": 0.75,
+		"sprite": preload("res://Assets/Sprites/weapon_axe.png"),
+		"damage": 25,
+		"reach": -5,
+		"sound": "slash",
+		"name": "Axe",
+		"restricted": false
+	},
+	WEAPON.mace: {
+		"speed": 0.5,
+		"sprite": preload("res://Assets/Sprites/weapon_mace.png"),
+		"damage": 30,
+		"reach": -10,
+		"sound": "bludgeon",
+		"name": "Mace",
+		"restricted": false
+	},
+	WEAPON.big_sword: {
+		"speed": 0.25,
+		"sprite": preload("res://Assets/Sprites/weapon_anime_sword.png"),
+		"damage": 50,
+		"reach": 10,
+		"sound": "slash",
+		"name": "Big Sword",
+		"restricted": false
+	},
+	WEAPON.unarmed: {
+		"speed": 0.25,
+		"sprite": preload("res://Assets/Sprites/weapon_anime_sword.png"),
+		"damage": 50,
+		"reach": 10,
+		"sound": "slash",
+		"name": "Big Sword",
+		"restricted": true
+	},
 }
 
 enum TRAITS {

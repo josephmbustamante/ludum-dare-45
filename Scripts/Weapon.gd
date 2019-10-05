@@ -8,22 +8,6 @@ var sounds
 
 var group_to_attack: String
 
-var weapon_config = {
-	Global.WEAPON.sword: {
-		"speed": 1,
-		"sprite": preload("res://Assets/Sprites/weapon_regular_sword.png"),
-		"damage": 20,
-		"reach": 0,
-		"sound": "slash"
-	},
-	Global.WEAPON.mace: {
-		"speed": 0.5,
-		"sprite": preload("res://Assets/Sprites/weapon_mace.png"),
-		"damage": 30,
-		"reach": -10,
-		"sound": "bludgeon"
-	}
-}
 var sounds_config = {
 	"slash": [load("res://Assets/Sounds/Slash1.wav"), load("res://Assets/Sounds/Slash2.wav"), load("res://Assets/Sounds/Slash3.wav")],
 	"bludgeon": [load("res://Assets/Sounds/Bludgeon1.wav"), load("res://Assets/Sounds/Bludgeon2.wav"), load("res://Assets/Sounds/Bludgeon3.wav")]
@@ -39,7 +23,7 @@ func set_group_to_attack(group: String):
 	group_to_attack = group
 
 func set_weapon(weapon_id: int):
-	var w = weapon_config[weapon_id]
+	var w = Global.weapon_config[weapon_id]
 	print(weapon_id, w)
 	$WeaponSprite/AnimationPlayer.playback_speed = base_speed * w["speed"]
 	$WeaponSprite.texture = w["sprite"]
