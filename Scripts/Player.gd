@@ -46,6 +46,8 @@ func handle_hit(damage: int):
 	print("player was hit, new health: ", health)
 	emit_signal("player_health_changed", health)
 	if health <= 0:
+		Global.player_died()
+		Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")
 		queue_free()
 
 
