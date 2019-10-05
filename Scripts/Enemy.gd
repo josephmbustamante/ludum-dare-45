@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (int) var health = 100
 export (int) var speed = 50
+export (int) var hit_radius = 30
 
 var target: PhysicsBody2D = null
 
@@ -14,7 +15,10 @@ func _process(delta: float) -> void:
 	var velocity = Vector2()  # The player's movement vector.
 
 	if target != null:
-		velocity = target.global_position - global_position
+		var distance_to_target = target.global_position - global_position
+		# only keep moving if we haven't reached the target yet
+		if distance_to_target.length() >= hit_radius:
+			velocity = target.global_position - global_position
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
