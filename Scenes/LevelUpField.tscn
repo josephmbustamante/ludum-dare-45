@@ -30,7 +30,7 @@ text = "-"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_left = 157.0
-margin_right = 209.0
+margin_right = 192.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -42,16 +42,18 @@ value = 5.0
 percent_visible = false
 
 [node name="Increase" type="Button" parent="."]
-margin_left = 229.0
-margin_right = 249.0
+margin_left = 212.0
+margin_right = 232.0
 margin_bottom = 40.0
 text = "+"
 
 [node name="CurrentLevelLabel" type="Label" parent="."]
-margin_left = 269.0
+margin_left = 252.0
 margin_top = 13.0
 margin_right = 277.0
 margin_bottom = 27.0
+rect_min_size = Vector2( 25, 0 )
 text = "1"
+align = 2
 [connection signal="pressed" from="Decrease" to="." method="_on_Decrease_pressed"]
 [connection signal="pressed" from="Increase" to="." method="_on_Increase_pressed"]
