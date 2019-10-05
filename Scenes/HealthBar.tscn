@@ -16,7 +16,7 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0, 0, 0, 1 )
 
-[node name="ProgressBar" type="ProgressBar"]
+[node name="HealthBar" type="ProgressBar"]
 margin_left = 59.0
 margin_right = 468.0
 margin_bottom = 14.0
@@ -26,3 +26,5 @@ custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 100.0
 percent_visible = false
+
+[node name="Tween" type="Tween" parent="."]
