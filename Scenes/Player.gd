@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 export var speed: int = 200
 
+var facing_left: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -23,13 +25,20 @@ func _process(delta: float) -> void:
 	else:
 		$AnimatedSprite.play("idle")
 
-	if velocity.x < 0:
-		$AnimatedSprite.flip_h = true
-	elif velocity.x > 0:
-		$AnimatedSprite.flip_h = false
+	if velocity.x < 0 && !facing_left:
+		scale.x *= -1
+		facing_left = true
+	elif velocity.x > 0 && facing_left:
+		scale.x *= -1
+		facing_left = false
+
+	if Input.is_action_just_pressed("click"):
+		$Weapon.attack()
 
 	move_and_slide(velocity)
 
+func handle_hit():
+	print("player was hit!")
 
 
 
