@@ -65,3 +65,8 @@ func _on_HealthLevelUpField_decrease_pressed():
 func _on_SpeedLevelUpField_decrease_pressed():
 	speed = decrement(starting_speed, speed)
 	$Rows/SpeedLevelUpField.set_value(speed)
+
+
+func _on_Confirm_pressed():
+	print("confirm pressed, ready to go to next level")
+	pass # Replace with function body.

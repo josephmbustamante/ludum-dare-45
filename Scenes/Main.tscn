@@ -33,5 +33,13 @@ position = Vector2( 90, 270 )
 [node name="BattleUI" parent="." instance=ExtResource( 5 )]
 margin_right = 1025.0
 margin_bottom = 610.0
+
+[node name="Button" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 570.0
+margin_right = 22.0
+margin_bottom = 590.0
+text = "[DELETE ME] - Go to level up"
 [connection signal="enemy_health_changed" from="Enemy" to="BattleUI" method="handle_enemy_health_changed"]
 [connection signal="player_health_changed" from="Player" to="BattleUI" method="handle_player_health_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

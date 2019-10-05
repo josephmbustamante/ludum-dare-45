@@ -54,9 +54,23 @@ margin_top = 114.0
 margin_right = 924.0
 margin_bottom = 134.0
 fieldName = "Speed"
+
+[node name="HSeparator" type="ColorRect" parent="Rows"]
+margin_top = 154.0
+margin_right = 924.0
+margin_bottom = 460.0
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0 )
+
+[node name="Confirm" type="Button" parent="Rows"]
+margin_top = 480.0
+margin_right = 924.0
+margin_bottom = 530.0
+text = "Confirm"
 [connection signal="decrease_pressed" from="Rows/StrengthLevelUpField" to="." method="_on_StrengthLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="Rows/StrengthLevelUpField" to="." method="_on_StrengthLevelUpField_increase_pressed"]
 [connection signal="decrease_pressed" from="Rows/HealthLevelUpField" to="." method="_on_HealthLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="Rows/HealthLevelUpField" to="." method="_on_HealthLevelUpField_increase_pressed"]
 [connection signal="decrease_pressed" from="Rows/SpeedLevelUpField" to="." method="_on_SpeedLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="Rows/SpeedLevelUpField" to="." method="_on_SpeedLevelUpField_increase_pressed"]
+[connection signal="pressed" from="Rows/Confirm" to="." method="_on_Confirm_pressed"]
