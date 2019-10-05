@@ -31,5 +31,6 @@ margin_bottom = 20.0
 [node name="Button" type="Button" parent="HBoxContainer/VBoxContainer2"]
 margin_right = 45.0
 margin_bottom = 20.0
+disabled = true
 text = "Start!"
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/Button" to="." method="_on_Start_Button_pressed"]
