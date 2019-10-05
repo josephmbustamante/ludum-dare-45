@@ -65,7 +65,7 @@ color = Color( 1, 1, 1, 0 )
 [node name="Confirm" type="Button" parent="Rows"]
 margin_top = 480.0
 margin_right = 924.0
-margin_bottom = 530.0
+margin_bottom = 500.0
 text = "Confirm"
 [connection signal="decrease_pressed" from="Rows/StrengthLevelUpField" to="." method="_on_StrengthLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="Rows/StrengthLevelUpField" to="." method="_on_StrengthLevelUpField_increase_pressed"]
