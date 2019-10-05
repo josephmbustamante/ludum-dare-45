@@ -14,7 +14,7 @@ signal player_health_changed(new_health)
 
 func _ready() -> void:
 	$Weapon.set_group_to_attack("enemy")
-	$Weapon.set_weapon(PlayerVariables.weapon)
+	$Weapon.set_weapon(PlayerVariables.weapon, strength)
 
 func _process(delta: float) -> void:
 	var velocity = Vector2()  # The player's movement vector.

@@ -3,6 +3,7 @@ extends KinematicBody2D
 export (int) var health = 100
 export (int) var speed = 50
 export (int) var hit_radius = 30
+export (int) var strength = 2
 
 var target: PhysicsBody2D = null
 
@@ -12,7 +13,7 @@ signal enemy_health_changed(new_health)
 
 func _ready() -> void:
 	$Weapon.set_group_to_attack("player")
-	$Weapon.set_weapon(Global.WEAPON.sword)
+	$Weapon.set_weapon(Global.WEAPON.sword, strength)
 	$AttackCooldown.stop()
 
 func set_target(new_target: PhysicsBody2D):

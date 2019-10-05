@@ -1,8 +1,11 @@
 extends Node2D
 
 export (int) var damage = 0
+export (int) var strength_multiplier = 5 # each point of strength adds this much damage
+
 export (int) var base_speed = 1
 export (int) var base_reach = 1
+
 var base_x_offset: int = 20
 var sounds
 
@@ -22,14 +25,14 @@ func _ready() -> void:
 func set_group_to_attack(group: String):
 	group_to_attack = group
 
-func set_weapon(weapon_id: int):
+func set_weapon(weapon_id: int, strength: int):
 	var w = Global.weapon_config[weapon_id]
 	print(weapon_id, w)
 	$WeaponSprite/AnimationPlayer.playback_speed = base_speed * w["speed"]
 	$WeaponSprite.texture = w["sprite"]
 	# For now, just implementing reach by x-shifting the hit box
 	$WeaponHitBox/CollisionShape2D.position.x = base_x_offset + w["reach"]
-	damage = w["damage"]
+	damage = w["damage"] + (strength * strength_multiplier)
 	sounds = sounds_config[w["sound"]]
 
 func attack():
