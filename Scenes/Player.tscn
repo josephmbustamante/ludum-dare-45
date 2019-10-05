@@ -51,4 +51,4 @@ shape = SubResource( 2 )
 [node name="Weapon" parent="." instance=ExtResource( 11 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Hit = ExtResource( 12 )
+anims/HitAnimation = ExtResource( 12 )
