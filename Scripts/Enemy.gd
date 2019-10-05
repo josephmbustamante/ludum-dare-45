@@ -51,4 +51,6 @@ func handle_hit(damage: int):
 	print("Enemy was hit, new health: ", health)
 	emit_signal("enemy_health_changed", health)
 	if health <= 0:
+		Global.current_stage += 1
+		Global.goto_scene("res://Scenes/LevelUp.tscn")
 		queue_free()

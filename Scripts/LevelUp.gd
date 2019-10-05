@@ -19,9 +19,9 @@ func _ready():
 	$Rows/StrengthLevelUpField.set_value(strength)
 	$Rows/HealthLevelUpField.set_value(health)
 	$Rows/SpeedLevelUpField.set_value(speed)
-	
+
 	$Rows/HBoxContainer/RemainingPointsValue.text = str(points_remaining)
-		
+
 
 func decrement(startingLevel, currentLevel):
 	if (currentLevel > 1 && currentLevel > startingLevel && points > points_remaining):
@@ -53,7 +53,7 @@ func _on_SpeedLevelUpField_increase_pressed():
 
 
 # DECREMENT
-	
+
 func _on_StrengthLevelUpField_decrease_pressed():
 	strength = decrement(starting_strength, strength)
 	$Rows/StrengthLevelUpField.set_value(strength)
@@ -68,5 +68,4 @@ func _on_SpeedLevelUpField_decrease_pressed():
 
 
 func _on_Confirm_pressed():
-	Global.current_stage += 1
 	Global.goto_scene("res://Scenes/Main.tscn")
