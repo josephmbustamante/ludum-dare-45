@@ -4,6 +4,7 @@ export (int) var damage = 0
 export (int) var base_speed = 1
 export (int) var base_reach = 1
 var base_x_offset: int = 20
+var sounds
 
 var group_to_attack: String
 
@@ -12,15 +13,27 @@ var weapon_config = {
 		"speed": 1,
 		"sprite": preload("res://Assets/Sprites/weapon_regular_sword.png"),
 		"damage": 20,
-		"reach": 0
+		"reach": 0,
+		"sound": "slash"
 	},
 	Global.WEAPON.mace: {
 		"speed": 0.5,
 		"sprite": preload("res://Assets/Sprites/weapon_mace.png"),
 		"damage": 30,
-		"reach": -10
+		"reach": -10,
+		"sound": "bludgeon"
 	}
 }
+var sounds_config = {
+	"slash": [load("res://Assets/Sounds/Slash1.wav"), load("res://Assets/Sounds/Slash2.wav"), load("res://Assets/Sounds/Slash3.wav")],
+	"bludgeon": [load("res://Assets/Sounds/Bludgeon1.wav"), load("res://Assets/Sounds/Bludgeon2.wav"), load("res://Assets/Sounds/Bludgeon3.wav")]
+}
+var swing_sound = load("res://Assets/Sounds/swing.wav")
+
+var audio_player: AudioStreamPlayer = null
+func _ready() -> void:
+	audio_player = AudioStreamPlayer.new()
+	self.add_child(audio_player)
 
 func set_group_to_attack(group: String):
 	group_to_attack = group
@@ -33,13 +46,18 @@ func set_weapon(weapon_id: int):
 	# For now, just implementing reach by x-shifting the hit box
 	$WeaponHitBox/CollisionShape2D.position.x = base_x_offset + w["reach"]
 	damage = w["damage"]
+	sounds = sounds_config[w["sound"]]
 
 func attack():
 	$WeaponSprite/AnimationPlayer.play("WeaponSwing")
+	audio_player.stream = swing_sound
+	audio_player.play()
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 	if group_to_attack && body != null && body.is_in_group(group_to_attack):
 		if body.has_method("handle_hit"):
+			audio_player.stream = sounds[randi() % sounds.size()]
+			audio_player.play()
 			body.handle_hit(damage)
 
 
