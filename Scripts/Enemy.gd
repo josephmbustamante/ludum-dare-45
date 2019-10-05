@@ -48,7 +48,6 @@ func _process(delta: float) -> void:
 func handle_hit(damage: int):
 	health -= damage
 	$AnimationPlayer.play("HitAnimation")
-	print("Enemy was hit, new health: ", health)
 	emit_signal("enemy_health_changed", health)
 	if health <= 0:
 		Global.current_stage += 1

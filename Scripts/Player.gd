@@ -1,7 +1,12 @@
 extends KinematicBody2D
 
-export (int) var speed = 200
-export (int) var health = 100
+onready var health = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"]
+onready var strength = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.strength]["current_value"]
+onready var speed = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.speed]["current_value"]
+
+# Player stats go betwen 1-10, and if we used that as a speed they would be frustratingly slow.
+# Instead, we keep the 1-10 scale, and just have a multiplier here
+var speed_multiplier = 50
 
 var facing_left: bool = false
 
@@ -23,7 +28,7 @@ func _process(delta: float) -> void:
 		velocity.y -= 1
 
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		velocity = velocity.normalized() * (speed * speed_multiplier)
 		$AnimatedSprite.play("run")
 	else:
 		$AnimatedSprite.play("idle")
@@ -43,7 +48,6 @@ func _process(delta: float) -> void:
 func handle_hit(damage: int):
 	health -= damage
 	$AnimationPlayer.play("HitAnimation")
-	print("player was hit, new health: ", health)
 	emit_signal("player_health_changed", health)
 	if health <= 0:
 		Global.player_died()
