@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/LevelUp.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/LevelUp.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/LevelUpField.tscn" type="PackedScene" id=2]
 
 [node name="LevelUp" type="MarginContainer"]
@@ -48,7 +48,15 @@ margin_top = 74.0
 margin_right = 924.0
 margin_bottom = 94.0
 fieldName = "Health"
+
+[node name="SpeedLevelUpField" parent="Rows" instance=ExtResource( 2 )]
+margin_top = 114.0
+margin_right = 924.0
+margin_bottom = 134.0
+fieldName = "Speed"
 [connection signal="decrease_pressed" from="Rows/StrengthLevelUpField" to="." method="_on_StrengthLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="Rows/StrengthLevelUpField" to="." method="_on_StrengthLevelUpField_increase_pressed"]
 [connection signal="decrease_pressed" from="Rows/HealthLevelUpField" to="." method="_on_HealthLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="Rows/HealthLevelUpField" to="." method="_on_HealthLevelUpField_increase_pressed"]
+[connection signal="decrease_pressed" from="Rows/SpeedLevelUpField" to="." method="_on_SpeedLevelUpField_decrease_pressed"]
+[connection signal="increase_pressed" from="Rows/SpeedLevelUpField" to="." method="_on_SpeedLevelUpField_increase_pressed"]
