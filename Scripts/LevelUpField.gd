@@ -5,6 +5,13 @@ signal decrease_pressed()
 
 export var fieldName = ""
 
+# min_value is a separate parameter from starting_value because we want to set a min_value
+# less than the starting value so there always appears some progress in the bar
+func initialize_field(starting_value: int, max_value: int, min_value: int):
+	$ProgressBar.max_value = max_value
+	$ProgressBar.min_value = min_value
+	set_value(starting_value)
+
 func _ready():
 	$AbilityNameLabel.text = fieldName + ": "
 
