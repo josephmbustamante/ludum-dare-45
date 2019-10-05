@@ -10,6 +10,7 @@ var facing_left: bool = false
 
 func _ready() -> void:
 	$Weapon.set_group_to_attack("player")
+	$AttackCooldown.stop()
 
 func set_target(new_target: PhysicsBody2D):
 	target = new_target
@@ -22,8 +23,9 @@ func _process(delta: float) -> void:
 		# only keep moving if we haven't reached the target yet
 		if distance_to_target.length() >= hit_radius:
 			velocity = target.global_position - global_position
-		else:
+		elif $AttackCooldown.is_stopped():
 			$Weapon.attack()
+			$AttackCooldown.start()
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
