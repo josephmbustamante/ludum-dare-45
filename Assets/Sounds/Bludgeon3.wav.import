@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bludgeon3.wav-6b81a8838319b9d483a30d6d2efb3e39.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Bludgeon3.wav"
+dest_files=[ "res://.import/Bludgeon3.wav-6b81a8838319b9d483a30d6d2efb3e39.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
