@@ -1,7 +1,7 @@
-extends Sprite
+extends Node2D
 
 func attack():
-	$AnimationPlayer.play("WeaponSwing")
+	$WeaponSprite/AnimationPlayer.play("WeaponSwing")
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 	if body.is_in_group("enemy"):

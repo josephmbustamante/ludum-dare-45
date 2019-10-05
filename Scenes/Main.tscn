@@ -5,13 +5,13 @@
 [ext_resource path="res://Assets/Sprites/knight_m_idle_anim_f1.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/knight_m_idle_anim_f2.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/knight_m_idle_anim_f3.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/knight_m_hit_anim_f0.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/knight_m_run_anim_f0.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/knight_m_run_anim_f1.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/knight_m_run_anim_f2.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Sprites/knight_m_run_anim_f3.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Sprites/weapon_regular_sword.png" type="Texture" id=11]
-[ext_resource path="res://Scenes/Weapon.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Sprites/knight_m_run_anim_f0.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/knight_m_run_anim_f1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/knight_m_run_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/knight_m_run_anim_f3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/knight_m_hit_anim_f0.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/Weapon.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Sprites/weapon_regular_sword.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/Enemy.gd" type="Script" id=13]
 [ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f0.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f1.png" type="Texture" id=15]
@@ -29,21 +29,21 @@ animations = [ {
 "name": "idle",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "hit",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "run",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "hit",
 "speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 10 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "WeaponSwing"
 length = 0.2
 step = 0.05
@@ -60,7 +60,7 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0, 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("../WeaponHitBox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -72,9 +72,9 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=4]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
@@ -87,7 +87,7 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 10, 15 )
 
 [node name="Main" type="Node2D"]
@@ -108,21 +108,24 @@ animation = "idle"
 position = Vector2( 0, 5 )
 shape = SubResource( 2 )
 
-[node name="Weapon" type="Sprite" parent="Player"]
+[node name="Weapon" type="Node2D" parent="Player"]
+script = ExtResource( 11 )
+
+[node name="WeaponSprite" type="Sprite" parent="Player/Weapon"]
 position = Vector2( 5, 5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 centered = false
 offset = Vector2( 0, -20 )
-script = ExtResource( 12 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Weapon"]
-anims/WeaponSwing = SubResource( 5 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Weapon/WeaponSprite"]
+anims/WeaponSwing = SubResource( 3 )
 
-[node name="Area2D" type="Area2D" parent="Player/Weapon"]
+[node name="WeaponHitBox" type="Area2D" parent="Player/Weapon"]
+position = Vector2( 5, 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Weapon/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Weapon/WeaponHitBox"]
 position = Vector2( 20, -5 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 disabled = true
 
 [node name="Enemy" type="KinematicBody2D" parent="." groups=[
@@ -132,10 +135,10 @@ position = Vector2( 805, 255 )
 script = ExtResource( 13 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy"]
-frames = SubResource( 3 )
+frames = SubResource( 5 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2( 0, 5 )
-shape = SubResource( 4 )
-[connection signal="body_entered" from="Player/Weapon/Area2D" to="Player/Weapon" method="_on_Area2D_body_entered"]
+shape = SubResource( 6 )
+[connection signal="body_entered" from="Player/Weapon/WeaponHitBox" to="Player/Weapon" method="_on_Area2D_body_entered"]
