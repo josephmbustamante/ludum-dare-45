@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 
 func handle_hit(damage: int):
 	health -= damage
+	$AnimationPlayer.play("Hit")
 	print("player was hit, new health: ", health)
 	if health <= 0:
 		queue_free()
