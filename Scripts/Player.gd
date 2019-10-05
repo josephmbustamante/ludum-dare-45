@@ -7,6 +7,7 @@ var facing_left: bool = false
 
 func _ready() -> void:
 	$Weapon.set_group_to_attack("enemy")
+	$Weapon.set_weapon(PlayerVariables.weapon)
 
 func _process(delta: float) -> void:
 	var velocity = Vector2()  # The player's movement vector.

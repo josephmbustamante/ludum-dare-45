@@ -10,6 +10,7 @@ var facing_left: bool = false
 
 func _ready() -> void:
 	$Weapon.set_group_to_attack("player")
+	$Weapon.set_weapon(Global.WEAPON.sword)
 	$AttackCooldown.stop()
 
 func set_target(new_target: PhysicsBody2D):
