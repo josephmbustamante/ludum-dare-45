@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="ludum-dare-45"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/WeaponPickerScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Scripts/Global.gd"
 
 [input]
 
