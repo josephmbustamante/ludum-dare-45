@@ -68,5 +68,5 @@ func _on_SpeedLevelUpField_decrease_pressed():
 
 
 func _on_Confirm_pressed():
-	print("confirm pressed, ready to go to next level")
-	pass # Replace with function body.
+	Global.current_stage += 1
+	Global.goto_scene("res://Scenes/Main.tscn")

@@ -28,7 +28,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 15 )
 
-[node name="Enemy" type="KinematicBody2D" groups=[
+[node name="BigZombie" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 position = Vector2( 805, 255 )
