@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-export var speed: int = 200
+export (int) var speed = 200
+export (int) var health = 100
 
 var facing_left: bool = false
 
@@ -37,8 +38,11 @@ func _process(delta: float) -> void:
 
 	move_and_slide(velocity)
 
-func handle_hit():
-	print("player was hit!")
+func handle_hit(damage: int):
+	health -= damage
+	print("player was hit, new health: ", health)
+	if health <= 0:
+		queue_free()
 
 
 
