@@ -7,3 +7,5 @@ var speed: int = 1;
 var weapon: int = 0;
 
 var unarmedStyleEnabled: bool = false;
+
+var deathCount: int = 0;

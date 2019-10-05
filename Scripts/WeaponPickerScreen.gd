@@ -9,6 +9,9 @@ extends MarginContainer
 onready var menuButton = $VBoxContainer/HBoxContainer/VBoxContainer/MenuButton
 onready var startButton = $VBoxContainer/HBoxContainer/VBoxContainer2/Button
 
+var starting_message = "You've died. But rather than send you immediately to the afterlife, the gods have chosen you for reincarnation to fight in their arena. Equip yourself, for battle looms near."
+var died_in_arena_message = "You've died %s times. Equip yourself, for battle looms near."
+
 func _ready():
 	var popup = menuButton.get_popup()
 	popup.connect("id_pressed", self, "weapon_menu_selection_made")
@@ -17,6 +20,10 @@ func _ready():
 	mb.add_item("Mace", Global.WEAPON.mace)
 	if (PlayerVariables.unarmedStyleEnabled):
 		mb.add_item("Start with nothing", Global.WEAPON.unarmed)
+	if (PlayerVariables.deathCount > 0):
+		$VBoxContainer/RichTextLabel.text = died_in_arena_message % PlayerVariables.deathCount
+	else:
+		$VBoxContainer/RichTextLabel.text = starting_message
 
 func _on_Start_Button_pressed():
 	print("Button pressed")
