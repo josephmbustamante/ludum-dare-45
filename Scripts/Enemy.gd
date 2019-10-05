@@ -8,6 +8,9 @@ var target: PhysicsBody2D = null
 
 var facing_left: bool = false
 
+func _ready() -> void:
+	$Weapon.set_group_to_attack("player")
+
 func set_target(new_target: PhysicsBody2D):
 	target = new_target
 
