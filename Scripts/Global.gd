@@ -58,14 +58,6 @@ var weapon_config = {
 	},
 }
 
-enum TRAITS {
-	health
-	strength
-	weapons
-	# stamina
-	# speed
-}
-
 var enemies = [
 	load("res://Scenes/Enemies/BigZombie.tscn"),
 	load("res://Scenes/Enemies/Ogre.tscn"),

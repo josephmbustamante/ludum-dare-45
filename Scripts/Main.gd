@@ -11,6 +11,6 @@ func _ready() -> void:
 	add_child(enemy)
 	enemy.set_target(player)
 
-	ui.initialize_player_health(PlayerVariables.maxHealth)
+	ui.initialize_player_health(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"])
 	ui.initialize_enemy_health(enemy.health)
 	enemy.connect("enemy_health_changed", ui, "handle_enemy_health_changed")
