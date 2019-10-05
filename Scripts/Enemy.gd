@@ -8,6 +8,8 @@ var target: PhysicsBody2D = null
 
 var facing_left: bool = false
 
+signal enemy_health_changed(new_health)
+
 func _ready() -> void:
 	$Weapon.set_group_to_attack("player")
 	$Weapon.set_weapon(Global.WEAPON.sword)
@@ -47,5 +49,6 @@ func handle_hit(damage: int):
 	health -= damage
 	$AnimationPlayer.play("HitAnimation")
 	print("Enemy was hit, new health: ", health)
+	emit_signal("enemy_health_changed", health)
 	if health <= 0:
 		queue_free()

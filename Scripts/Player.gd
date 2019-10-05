@@ -5,6 +5,8 @@ export (int) var health = 100
 
 var facing_left: bool = false
 
+signal player_health_changed(new_health)
+
 func _ready() -> void:
 	$Weapon.set_group_to_attack("enemy")
 	$Weapon.set_weapon(PlayerVariables.weapon)
@@ -42,6 +44,7 @@ func handle_hit(damage: int):
 	health -= damage
 	$AnimationPlayer.play("HitAnimation")
 	print("player was hit, new health: ", health)
+	emit_signal("player_health_changed", health)
 	if health <= 0:
 		queue_free()
 

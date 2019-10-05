@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/BattleUI.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=2]
+
+[node name="BattleUI" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+script = ExtResource( 1 )
+
+[node name="Rows" type="VBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="Columns" type="HBoxContainer" parent="Rows"]
+margin_right = 984.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_constants/separation = 20
+
+[node name="PlayerLabel" type="Label" parent="Rows/Columns"]
+margin_right = 39.0
+margin_bottom = 14.0
+text = "Player"
+
+[node name="PlayerHealthBar" parent="Rows/Columns" instance=ExtResource( 2 )]
+
+[node name="Placeholder" type="VSeparator" parent="Rows/Columns"]
+margin_left = 488.0
+margin_right = 492.0
+margin_bottom = 14.0
+
+[node name="EnemyHealthBar" parent="Rows/Columns" instance=ExtResource( 2 )]
+margin_left = 512.0
+margin_right = 921.0
+
+[node name="EnemyLabel" type="Label" parent="Rows/Columns"]
+margin_left = 941.0
+margin_right = 984.0
+margin_bottom = 14.0
+text = "Enemy"
