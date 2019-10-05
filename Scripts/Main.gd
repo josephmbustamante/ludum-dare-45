@@ -11,3 +11,7 @@ func _ready() -> void:
 	ui.initialize_enemy_health(enemy.health)
 
 	enemy.set_target(player)
+
+
+func _on_Button_pressed():
+	Global.goto_scene("res://Scenes/LevelUp.tscn")
