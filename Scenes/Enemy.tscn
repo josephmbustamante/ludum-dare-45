@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f0.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f1.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f2.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f3.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Weapon.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -39,3 +40,5 @@ animation = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5 )
 shape = SubResource( 2 )
+
+[node name="Weapon" parent="." instance=ExtResource( 10 )]

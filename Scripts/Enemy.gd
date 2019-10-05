@@ -19,6 +19,8 @@ func _process(delta: float) -> void:
 		# only keep moving if we haven't reached the target yet
 		if distance_to_target.length() >= hit_radius:
 			velocity = target.global_position - global_position
+		else:
+			$Weapon.attack()
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
