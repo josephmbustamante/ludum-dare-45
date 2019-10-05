@@ -11,7 +11,7 @@ func attack():
 	$WeaponSprite/AnimationPlayer.play("WeaponSwing")
 
 func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
-	if group_to_attack && body.is_in_group(group_to_attack):
+	if group_to_attack && body != null && body.is_in_group(group_to_attack):
 		if body.has_method("handle_hit"):
 			body.handle_hit(damage)
 
