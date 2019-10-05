@@ -1,11 +1,5 @@
 extends Node
 
-enum WEAPON {
-	sword
-	axe
-	unarmed
-}
-
 var currentHealth: int = 100;
 var maxHealth: int = 100;
 var strength: int = 1;

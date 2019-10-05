@@ -32,7 +32,6 @@ margin_bottom = 20.0
 margin_right = 102.0
 margin_bottom = 20.0
 text = "Pick a weapon"
-items = [ "Sword", null, 0, false, false, 1, 0, null, "", false, "Axe", null, 0, false, false, -1, 0, null, "", false ]
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_left = 106.0
