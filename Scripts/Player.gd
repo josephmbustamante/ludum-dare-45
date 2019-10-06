@@ -30,11 +30,15 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("up"):
 		velocity.y -= 1
 
-	if $DashEffect.is_stopped():
-		dash_multiplier = 1
-		$Weapon.disable_critical_hit()
-	else:
+	if !$DashEffect.is_stopped():
 		dash_multiplier = 5
+		$Weapon.disable_critical_hit()
+	elif !$RollEffect.is_stopped():
+		dash_multiplier = 3
+		$CollisionShape2D.disabled = true
+	else:
+		dash_multiplier = 1
+		$CollisionShape2D.disabled = false
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier)) * dash_multiplier
@@ -56,8 +60,12 @@ func _process(delta: float) -> void:
 		$DashCooldown.start()
 		$DashEffect.start()
 		$Weapon.enable_critical_hit()
+	
+	if Input.is_key_pressed(KEY_L) && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped():
+		$RollCooldown.start()
+		$RollEffect.start()
 
-	if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped():
+	if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped() && $RollEffect.is_stopped():
 		$Weapon.attack()
 		$AttackCooldown.start()
 

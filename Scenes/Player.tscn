@@ -63,3 +63,10 @@ one_shot = true
 [node name="DashEffect" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
+
+[node name="RollCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="RollEffect" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
