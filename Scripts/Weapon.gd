@@ -12,6 +12,8 @@ var critical_hit = 1.0
 
 var group_to_attack: String
 
+var unarmed = false
+
 var sounds_config = {
 	"slash": [load("res://Assets/Sounds/Slash1.wav"), load("res://Assets/Sounds/Slash2.wav"), load("res://Assets/Sounds/Slash3.wav")],
 	"bludgeon": [load("res://Assets/Sounds/Bludgeon1.wav"), load("res://Assets/Sounds/Bludgeon2.wav"), load("res://Assets/Sounds/Bludgeon3.wav")]
@@ -27,6 +29,9 @@ func set_group_to_attack(group: String):
 	group_to_attack = group
 
 func set_weapon(weapon_id: int, strength: int):
+	unarmed = weapon_id == Global.WEAPON.unarmed
+#	if unarmed:
+#		$WeaponSprite.position.y += 10
 	var w = Global.weapon_config[weapon_id]
 	print(weapon_id, w)
 	$WeaponSprite/AnimationPlayer.playback_speed = base_speed * w["speed"]
@@ -38,12 +43,16 @@ func set_weapon(weapon_id: int, strength: int):
 
 func enable_critical_hit():
 	critical_hit = 1.75
-
+#
 func disable_critical_hit():
 	critical_hit = 1.0
 
 func attack():
-	$WeaponSprite/AnimationPlayer.play("WeaponSwing")
+	if unarmed:
+		$WeaponSprite/AnimationPlayer.play("Punch")
+	else:
+		$WeaponSprite/AnimationPlayer.play("WeaponSwing")
+	
 	audio_player.stream = swing_sound
 	audio_player.play()
 

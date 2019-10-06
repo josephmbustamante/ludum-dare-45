@@ -61,6 +61,7 @@ func start_battle():
 				$EnemyBanterBox.set_text(enemies[0].banter_texts[1])
 				$EnemyBanterBox.show()
 				return
+			# TODO show weapon death animation
 			player.handle_hit(10000000)
 		enemy.set_target(player)
 	player.input_enabled = true

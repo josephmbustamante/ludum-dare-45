@@ -50,9 +50,9 @@ var weapon_config = {
 	},
 	WEAPON.unarmed: {
 		"speed": 0.25,
-		"sprite": preload("res://Assets/Sprites/weapon_anime_sword.png"),
-		"damage": 50,
-		"reach": 10,
+		"sprite": preload("res://Assets/Sprites/coin_anim_f0.png"),
+		"damage": 10,
+		"reach": 0,
 		"sound": "slash",
 		"name": "Start with Nothing",
 		"restricted": true

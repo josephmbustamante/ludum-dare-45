@@ -15,7 +15,7 @@ func _ready():
 
 	if (PlayerVariables.unarmedStyleEnabled):
 		var weapon_config = Global.weapon_config[Global.WEAPON.unarmed]
-		create_weapon_select(Global.WEAPON.unarmed, weapon_config["sprite"], weapon_config["name"], weapon_config["damage"], weapon_config["speed"])
+		create_weapon_select(Global.WEAPON.unarmed, null, weapon_config["name"], weapon_config["damage"], weapon_config["speed"])
 
 	# This line has no text / is invisible until the player dies once
 	if (PlayerVariables.deathCount > 0):
