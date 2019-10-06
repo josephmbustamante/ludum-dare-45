@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Resources/DungeonTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/BattleUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Resources/Retron2000Title.tres" type="DynamicFont" id=5]
-[ext_resource path="res://Resources/theme.tres" type="Theme" id=6]
-[ext_resource path="res://Resources/Retron2000Body.tres" type="DynamicFont" id=7]
-[ext_resource path="res://Resources/Retron2000Small.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Scenes/VictoryPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/BanterBox.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -35,58 +33,19 @@ position = Vector2( 90, 270 )
 margin_right = 1025.0
 margin_bottom = 610.0
 
-[node name="VictoryMessage" type="Label" parent="."]
+[node name="VictoryPanel" parent="." instance=ExtResource( 5 )]
 visible = false
 margin_left = 430.0
-margin_top = 120.0
-margin_right = 606.0
-margin_bottom = 168.0
-custom_fonts/font = ExtResource( 5 )
-text = "Victory!"
-align = 1
-valign = 1
-uppercase = true
+margin_top = 109.0
+margin_right = 629.555
+margin_bottom = 259.222
 
-[node name="VictoryButton" type="Button" parent="."]
-visible = false
-margin_left = 450.0
-margin_top = 200.0
-margin_right = 595.0
-margin_bottom = 246.0
-mouse_default_cursor_shape = 2
-theme = ExtResource( 6 )
-custom_fonts/font = ExtResource( 7 )
-text = "Onward!"
-
-[node name="EnemyBanterBox" type="ColorRect" parent="."]
-margin_left = 348.0
-margin_top = 365.0
-margin_right = 672.0
-margin_bottom = 470.0
-theme = ExtResource( 6 )
-color = Color( 0.788235, 0.760784, 0.705882, 0.682353 )
-
-[node name="Label" type="Label" parent="EnemyBanterBox"]
-margin_left = 7.0
-margin_top = 6.0
-margin_right = 317.0
-margin_bottom = 65.0
-custom_fonts/font = ExtResource( 8 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "LOREM IPSUM DOLOR SIT AMET. CONSECTETEUR LRIEM."
-autowrap = true
-uppercase = true
-
-[node name="Button" type="Button" parent="EnemyBanterBox"]
-margin_left = 6.0
-margin_top = 70.0
-margin_right = 66.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 60, 30 )
-mouse_default_cursor_shape = 2
-custom_fonts/font = ExtResource( 8 )
-text = "FIGHT!"
+[node name="EnemyBanterBox" parent="." instance=ExtResource( 6 )]
+margin_left = 320.0
+margin_top = 335.0
+margin_right = 720.0
+margin_bottom = 535.0
 [connection signal="player_health_changed" from="Player" to="BattleUI" method="handle_player_health_changed"]
 [connection signal="player_stamina_changed" from="Player" to="BattleUI" method="handle_player_stamina_changed"]
-[connection signal="pressed" from="VictoryButton" to="." method="_on_VictoryButton_pressed"]
-[connection signal="pressed" from="EnemyBanterBox/Button" to="." method="start_battle"]
+[connection signal="victory_button_pressed" from="VictoryPanel" to="." method="_on_VictoryButton_pressed"]
+[connection signal="banter_box_fight_clicked" from="EnemyBanterBox" to="." method="start_battle"]
