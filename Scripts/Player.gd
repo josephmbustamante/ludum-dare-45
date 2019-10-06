@@ -31,8 +31,14 @@ func has_weapon():
 func _ready() -> void:
 	$Weapon.set_group_to_attack("enemy")
 	$Weapon.set_weapon(PlayerVariables.weapon, strength)
+	if PlayerVariables.weapon == Global.WEAPON.unarmed:
+		$Weapon.position = Vector2(0, 0)
+		($Weapon as Node2D).translate(Vector2(0, 20))
+		$Weapon/WeaponHitBox/CollisionShape2D.translate(Vector2(-22, -15))
 
 func _process(delta: float) -> void:
+	if defeated:
+		return
 	if stamina < PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["start_value"]:
 		if stamina_regen >= 1.0:
 			update_stamina(stamina_regen)
@@ -105,6 +111,7 @@ func handle_hit(damage: int):
 		$DeathTimer.start()
 
 func finish_death_transition():
+	Global.current_stage = 0
 	Global.player_died()
 	Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")
 	queue_free()
