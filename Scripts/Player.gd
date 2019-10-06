@@ -31,38 +31,38 @@ func _process(delta: float) -> void:
 			velocity.y += 1
 		if Input.is_action_pressed("up"):
 			velocity.y -= 1
-	
+
 		if $DashEffect.is_stopped():
 			dash_multiplier = 1
 			$Weapon.disable_critical_hit()
 		else:
 			dash_multiplier = 5
-	
+
 		if velocity.length() > 0:
 			velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier)) * dash_multiplier
 			$AnimatedSprite.play("run")
 		else:
 			$AnimatedSprite.play("idle")
-	
+
 		if velocity.x < 0 && !facing_left:
 			scale.x *= -1
 			facing_left = true
 		elif velocity.x > 0 && facing_left:
 			scale.x *= -1
 			facing_left = false
-	
+
 		if Input.is_action_just_pressed("click"):
 			$Weapon.attack()
-	
+
 		if Input.is_key_pressed(KEY_J) && $DashCooldown.is_stopped():
 			$DashCooldown.start()
 			$DashEffect.start()
 			$Weapon.enable_critical_hit()
-	
+
 		if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped():
 			$Weapon.attack()
 			$AttackCooldown.start()
-	
+
 		move_and_slide(velocity)
 
 func handle_hit(damage: int):

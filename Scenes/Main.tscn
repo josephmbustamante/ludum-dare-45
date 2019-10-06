@@ -34,6 +34,7 @@ margin_right = 1025.0
 margin_bottom = 610.0
 
 [node name="VictoryMessage" type="Label" parent="."]
+visible = false
 margin_left = 430.0
 margin_top = 120.0
 margin_right = 606.0
@@ -45,6 +46,7 @@ valign = 1
 uppercase = true
 
 [node name="VictoryButton" type="Button" parent="."]
+visible = false
 margin_left = 450.0
 margin_top = 200.0
 margin_right = 595.0
