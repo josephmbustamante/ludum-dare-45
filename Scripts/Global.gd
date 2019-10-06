@@ -62,6 +62,7 @@ var enemies = [
 	load("res://Scenes/Enemies/BigZombie.tscn"),
 	load("res://Scenes/Enemies/Ogre.tscn"),
 	load("res://Scenes/Enemies/BigDemon.tscn"),
+	load("res://Scenes/Enemies/Imp.tscn"),
 ]
 
 var current_stage = 0
