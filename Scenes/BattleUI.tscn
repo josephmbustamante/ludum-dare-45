@@ -26,34 +26,34 @@ custom_constants/separation = 20
 
 [node name="Columns" type="HBoxContainer" parent="Rows"]
 margin_right = 984.0
-margin_bottom = 33.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="PlayerLabel" type="Label" parent="Rows/Columns"]
-margin_right = 91.0
-margin_bottom = 33.0
+margin_right = 85.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 2 )
 text = "Player"
 
 [node name="PlayerHealthBar" parent="Rows/Columns" instance=ExtResource( 3 )]
-margin_left = 111.0
+margin_left = 105.0
 margin_right = 475.0
-margin_bottom = 33.0
+margin_bottom = 30.0
 
 [node name="Placeholder" type="VSeparator" parent="Rows/Columns"]
 margin_left = 495.0
 margin_right = 499.0
-margin_bottom = 33.0
+margin_bottom = 30.0
 
 [node name="EnemyHealthBar" parent="Rows/Columns" instance=ExtResource( 3 )]
 margin_left = 519.0
-margin_right = 883.0
-margin_bottom = 33.0
+margin_right = 889.0
+margin_bottom = 30.0
 
 [node name="EnemyLabel" type="Label" parent="Rows/Columns"]
-margin_left = 903.0
-margin_right = 983.0
-margin_bottom = 33.0
+margin_left = 909.0
+margin_right = 984.0
+margin_bottom = 30.0
 custom_fonts/font = ExtResource( 2 )
 text = "Enemy"
