@@ -83,6 +83,7 @@ func _process(delta: float) -> void:
 
 		if Input.is_action_just_pressed("dash")  && $DashCooldown.is_stopped() && stamina >= dash_stamina_cost:
 			update_stamina(-dash_stamina_cost)
+			$AnimationPlayer.play("DashAnimation")
 			$DashCooldown.start()
 			$DashEffect.start()
 			$Weapon.enable_critical_hit()
@@ -94,6 +95,7 @@ func _process(delta: float) -> void:
 
 		if Input.is_action_just_pressed("dodge") && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped() && stamina >= dodge_stamina_cost:
 			update_stamina(-dodge_stamina_cost)
+			$AnimationPlayer.play("RollAnimation")
 			$RollCooldown.start()
 			$RollEffect.start()
 
