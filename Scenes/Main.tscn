@@ -53,6 +53,7 @@ margin_left = 450.0
 margin_top = 200.0
 margin_right = 595.0
 margin_bottom = 246.0
+mouse_default_cursor_shape = 2
 theme = ExtResource( 6 )
 custom_fonts/font = ExtResource( 7 )
 text = "Onward!"
@@ -82,6 +83,7 @@ margin_top = 70.0
 margin_right = 66.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 60, 30 )
+mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 8 )
 text = "FIGHT!"
 [connection signal="player_health_changed" from="Player" to="BattleUI" method="handle_player_health_changed"]

@@ -90,6 +90,7 @@ margin_left = 380.0
 margin_right = 580.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 200, 40 )
+mouse_default_cursor_shape = 2
 disabled = true
 text = "Start!"
 [connection signal="pressed" from="MarginContainer/Rows/CenterContainer/Button" to="MarginContainer" method="_on_Start_Button_pressed"]
