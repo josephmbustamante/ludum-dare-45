@@ -8,6 +8,7 @@ onready var speed = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.speed]["c
 # Instead, we keep the 1-10 scale, and just have a multiplier here
 export (int) var speed_multiplier = 10
 export (int) var base_speed = 75
+export (bool) var input_enabled = true;
 
 var facing_left: bool = false
 
@@ -18,37 +19,38 @@ func _ready() -> void:
 	$Weapon.set_weapon(PlayerVariables.weapon, strength)
 
 func _process(delta: float) -> void:
-	var velocity = Vector2()  # The player's movement vector.
-	if Input.is_action_pressed("right"):
-		velocity.x += 1
-	if Input.is_action_pressed("left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("down"):
-		velocity.y += 1
-	if Input.is_action_pressed("up"):
-		velocity.y -= 1
-
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier))
-		$AnimatedSprite.play("run")
-	else:
-		$AnimatedSprite.play("idle")
-
-	if velocity.x < 0 && !facing_left:
-		scale.x *= -1
-		facing_left = true
-	elif velocity.x > 0 && facing_left:
-		scale.x *= -1
-		facing_left = false
-
-	if Input.is_action_just_pressed("click"):
-		$Weapon.attack()
-
-	if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped():
-		$Weapon.attack()
-		$AttackCooldown.start()
-
-	move_and_slide(velocity)
+	if input_enabled:
+		var velocity = Vector2()  # The player's movement vector.
+		if Input.is_action_pressed("right"):
+			velocity.x += 1
+		if Input.is_action_pressed("left"):
+			velocity.x -= 1
+		if Input.is_action_pressed("down"):
+			velocity.y += 1
+		if Input.is_action_pressed("up"):
+			velocity.y -= 1
+	
+		if velocity.length() > 0:
+			velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier))
+			$AnimatedSprite.play("run")
+		else:
+			$AnimatedSprite.play("idle")
+	
+		if velocity.x < 0 && !facing_left:
+			scale.x *= -1
+			facing_left = true
+		elif velocity.x > 0 && facing_left:
+			scale.x *= -1
+			facing_left = false
+	
+		if Input.is_action_just_pressed("click"):
+			$Weapon.attack()
+	
+		if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped():
+			$Weapon.attack()
+			$AttackCooldown.start()
+	
+		move_and_slide(velocity)
 
 func handle_hit(damage: int):
 	health -= damage
