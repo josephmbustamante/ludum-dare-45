@@ -20,6 +20,7 @@ func _ready() -> void:
 
 	ui.initialize_enemy_health(health)
 	ui.initialize_player_health(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"])
+	ui.initialize_player_stamina(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["current_value"])
 
 	if !Global.music_player.playing:
 		Global.music_player.play()

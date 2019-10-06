@@ -51,4 +51,5 @@ margin_right = 581.0
 margin_bottom = 150.0
 text = "Onward!"
 [connection signal="player_health_changed" from="Player" to="BattleUI" method="handle_player_health_changed"]
+[connection signal="player_stamina_changed" from="Player" to="BattleUI" method="handle_player_stamina_changed"]
 [connection signal="pressed" from="VictoryButton" to="." method="_on_VictoryButton_pressed"]

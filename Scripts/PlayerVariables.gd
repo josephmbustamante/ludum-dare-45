@@ -3,6 +3,7 @@ extends Node
 enum PLAYER_STATS {
 	health,
 	strength,
+	stamina,
 	speed
 }
 
@@ -18,6 +19,12 @@ var stats = {
 		"current_value": 1,
 		"max_value": 10,
 		"increment": 1,
+	},
+	PLAYER_STATS.stamina: {
+		"start_value": 100,
+		"current_value": 100,
+		"max_value": 200,
+		"increment": 10,
 	},
 	PLAYER_STATS.speed: {
 		"start_value": 1,
