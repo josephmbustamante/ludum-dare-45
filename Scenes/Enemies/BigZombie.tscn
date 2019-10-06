@@ -1,14 +1,14 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f0.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f1.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f2.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f3.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f0.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f1.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f2.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/big_zombie_idle_anim_f3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f0.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/big_zombie_run_anim_f3.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Weapon.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Resources/HitAnimation.tres" type="Animation" id=11]
 
@@ -16,12 +16,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "run",
+"name": "idle",
 "speed": 12.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "idle",
+"name": "run",
 "speed": 12.0
 } ]
 

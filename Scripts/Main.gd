@@ -43,12 +43,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Global.enemy_defeated:
-		$VictoryButton.show()
-		$VictoryMessage.show()
+		$VictoryPanel.show()
 
 func _on_VictoryButton_pressed():
-	$VictoryButton.hide()
-	$VictoryMessage.hide()
+	$VictoryPanel.hide()
 	Global.enemy_defeated = false
 	Global.current_stage += 1
 	Global.goto_scene("res://Scenes/LevelUp.tscn")
