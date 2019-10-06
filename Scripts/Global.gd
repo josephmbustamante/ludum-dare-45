@@ -61,6 +61,7 @@ var weapon_config = {
 var enemies = [
 	load("res://Scenes/Enemies/BigZombie.tscn"),
 	load("res://Scenes/Enemies/Ogre.tscn"),
+	load("res://Scenes/Enemies/BigDemon.tscn"),
 ]
 
 var current_stage = 0
