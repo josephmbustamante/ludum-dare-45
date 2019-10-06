@@ -53,7 +53,7 @@ var weapon_config = {
 		"damage": 50,
 		"reach": 10,
 		"sound": "slash",
-		"name": "Big Sword",
+		"name": "Unarmed",
 		"restricted": true
 	},
 }
