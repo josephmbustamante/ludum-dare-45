@@ -11,9 +11,11 @@ export (int) var speed_multiplier = 10
 export (int) var base_speed = 75
 export (bool) var input_enabled = true;
 
-export (int) var attack_stamina_cost = 10
-export (int) var dash_stamina_cost = 20
-export (int) var stamina_per_second = 20
+export (int) var attack_stamina_cost = 10.0
+export (int) var dash_stamina_cost = 20.0
+export (int) var dodge_stamina_cost = 20.0
+export (int) var stamina_per_second = 10.0
+export (float) var stamina_regen = 0
 
 var dash_multiplier = 1
 
@@ -31,8 +33,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if stamina < PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["start_value"]:
-		print(delta, stamina_per_second, delta * stamina_per_second)
-		update_stamina(delta * stamina_per_second)
+		if stamina_regen >= 1.0:
+			update_stamina(stamina_regen)
+			stamina_regen = 0
+		else:
+			stamina_regen += 1.0 * delta * stamina_per_second
 	if input_enabled:
 		var velocity = Vector2()  # The player's movement vector.
 		if Input.is_action_pressed("right"):
@@ -79,7 +84,8 @@ func _process(delta: float) -> void:
 			$Weapon.attack()
 			$AttackCooldown.start()
 		        
-		if Input.is_key_pressed(KEY_L) && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped():
+		if Input.is_action_just_pressed("dodge") && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped() && stamina >= dodge_stamina_cost:
+			update_stamina(-dodge_stamina_cost)
 			$RollCooldown.start()
 			$RollEffect.start()
 
@@ -98,8 +104,8 @@ func update_health(damage: int):
 	health -= damage
 	emit_signal("player_health_changed", health)
 
-func update_stamina(stamina_change: int):
-	stamina += stamina_change
+func update_stamina(stamina_change: float):
+	stamina += stamina_change * 1.0
 	emit_signal("player_stamina_changed", stamina)
 
 

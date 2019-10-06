@@ -15,7 +15,7 @@ func initialize_enemy_health(max_health: int):
 	enemy_health = max_health
 	enemy_health_bar.initialize_health_bar(max_health)
 
-func handle_player_stamina_changed(new_stamina: int):
+func handle_player_stamina_changed(new_stamina: float):
 	player_stamina_bar.change_health_bar_value(new_stamina)
 
 func handle_player_health_changed(new_health: int):

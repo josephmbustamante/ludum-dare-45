@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/BattleUI.gd" type="Script" id=2]
@@ -47,21 +47,22 @@ custom_fonts/font = ExtResource( 3 )
 text = "Player"
 
 [node name="PlayerBars" type="VBoxContainer" parent="Rows/Columns"]
-margin_left = 111.0
+margin_left = 105.0
 margin_right = 475.0
-margin_bottom = 33.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 
 [node name="PlayerHealthBar" parent="Rows/Columns/PlayerBars" instance=ExtResource( 4 )]
 margin_left = 0.0
-margin_right = 364.0
+margin_right = 370.0
+margin_bottom = 13.0
 size_flags_vertical = 3
 
 [node name="PlayerStaminaBar" parent="Rows/Columns/PlayerBars" instance=ExtResource( 4 )]
 margin_left = 0.0
-margin_top = 18.0
-margin_right = 364.0
-margin_bottom = 33.0
+margin_top = 17.0
+margin_right = 370.0
+margin_bottom = 30.0
 size_flags_vertical = 3
 custom_styles/fg = SubResource( 1 )
 

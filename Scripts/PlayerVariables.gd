@@ -21,10 +21,10 @@ var stats = {
 		"increment": 1,
 	},
 	PLAYER_STATS.stamina: {
-		"start_value": 100,
-		"current_value": 100,
-		"max_value": 200,
-		"increment": 10,
+		"start_value": 100.0,
+		"current_value": 100.0,
+		"max_value": 200.0,
+		"increment": 10.0,
 	},
 	PLAYER_STATS.speed: {
 		"start_value": 1,
