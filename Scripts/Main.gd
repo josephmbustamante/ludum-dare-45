@@ -49,6 +49,8 @@ func _on_VictoryButton_pressed():
 	$VictoryPanel.hide()
 	Global.enemy_defeated = false
 	Global.current_stage += 1
+	# if enemy.is_final_boss:
+	#	go to final victory screen
 	Global.goto_scene("res://Scenes/LevelUp.tscn")
 	queue_free()
 

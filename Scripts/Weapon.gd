@@ -52,7 +52,7 @@ func attack():
 		$WeaponSprite/AnimationPlayer.play("Punch")
 	else:
 		$WeaponSprite/AnimationPlayer.play("WeaponSwing")
-	
+
 	audio_player.stream = swing_sound
 	audio_player.play()
 

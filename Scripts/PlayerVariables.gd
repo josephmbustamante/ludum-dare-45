@@ -45,6 +45,11 @@ func get_player_stat_max(stat: int) -> int:
 func set_player_stat_current(stat: int, new_value: int):
 	stats[stat]["current_value"] = new_value
 
+func reset_stats():
+	for stat in stats:
+		stats[stat]["current_value"] = stats[stat]["start_value"]
+	deathCount = 0
+
 var unarmedStyleEnabled: bool = false
 
 var deathCount: int = 0

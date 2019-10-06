@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Weapon.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/weapon_regular_sword.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "Punch"
 length = 0.2
 step = 0.01
@@ -32,8 +32,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "WeaponSwing"
+[sub_resource type="Animation" id=2]
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -61,7 +60,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource( 1 )
@@ -73,8 +72,8 @@ centered = false
 offset = Vector2( 0, -20 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponSprite"]
-anims/Punch = SubResource( 3 )
-anims/WeaponSwing = SubResource( 1 )
+anims/Punch = SubResource( 1 )
+anims/WeaponSwing = SubResource( 2 )
 
 [node name="WeaponHitBox" type="Area2D" parent="."]
 position = Vector2( 5, 5 )
@@ -82,6 +81,6 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponHitBox"]
 position = Vector2( 20, -5 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 disabled = true
 [connection signal="body_entered" from="WeaponHitBox" to="." method="_on_Area2D_body_entered"]

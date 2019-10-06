@@ -98,3 +98,4 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 200, 50 )
 size_flags_horizontal = 0
 text = "PLAY AGAIN"
+[connection signal="pressed" from="MarginContainer/Rows/CenterContainer/Button" to="." method="_on_play_again_button_pressed"]

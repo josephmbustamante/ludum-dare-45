@@ -26,3 +26,9 @@ func _ready() -> void:
 	else:
 		rating_text.set("custom_colors/font_color", Color.red)
 		rating_text.text = "VERY POOR"
+
+
+func _on_play_again_button_pressed() -> void:
+	PlayerVariables.reset_stats()
+	Global.reset_global_state()
+	Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")

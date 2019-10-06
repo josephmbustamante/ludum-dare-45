@@ -118,6 +118,10 @@ func _deferred_goto_scene(path):
 	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
 
+func reset_global_state():
+	current_stage = 0
+	enemy_defeated = false
+
 func player_died():
 	PlayerVariables.deathCount += 1
 	music_player.stop()
