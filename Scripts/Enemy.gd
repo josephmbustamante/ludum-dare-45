@@ -1,10 +1,21 @@
 extends KinematicBody2D
 
+enum MY_BS_DUPLICATE_WEAPON {
+	sword
+	axe
+	mace
+	big_sword
+	unarmed
+	staff
+}
+
 export (int) var health = 100
 export (int) var speed = 50
 export (int) var hit_radius = 30
 export (int) var strength = 2
 export (Array) var banter_texts = []
+export (MY_BS_DUPLICATE_WEAPON) var weapon_type
+export (bool) var is_final_boss = false
 
 var target: PhysicsBody2D = null
 
@@ -15,7 +26,7 @@ signal enemy_health_changed(new_health)
 
 func _ready() -> void:
 	$Weapon.set_group_to_attack("player")
-	$Weapon.set_weapon(Global.WEAPON.sword, strength)
+	$Weapon.set_weapon(weapon_type, strength)
 	$AttackCooldown.stop()
 
 func set_target(new_target: PhysicsBody2D):

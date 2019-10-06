@@ -8,6 +8,7 @@ enum WEAPON {
 	mace
 	big_sword
 	unarmed
+	staff
 }
 
 var weapon_config = {
@@ -53,7 +54,16 @@ var weapon_config = {
 		"damage": 50,
 		"reach": 10,
 		"sound": "slash",
-		"name": "Unarmed",
+		"name": "Start with Nothing",
+		"restricted": true
+	},
+	WEAPON.staff: {
+		"speed": 1,
+		"sprite": preload("res://Assets/Sprites/weapon_red_magic_staff.png"),
+		"damage": 100,
+		"reach": 10,
+		"sound": "slash",
+		"name": "Magic Staff",
 		"restricted": true
 	},
 }
@@ -62,6 +72,7 @@ var stages = [
 	{ "enemy": load("res://Scenes/Enemies/Ogre.tscn"), "count": 1 },
 	{ "enemy": load("res://Scenes/Enemies/BigDemon.tscn"), "count": 1 },
 	{ "enemy": load("res://Scenes/Enemies/Imp.tscn"), "count": 10 },
+	{ "enemy": load("res://Scenes/Enemies/Wizard.tscn"), "count": 1 },
 ]
 
 var enemy_defeated = false

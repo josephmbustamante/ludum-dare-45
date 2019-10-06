@@ -33,7 +33,7 @@ extents = Vector2( 10, 15 )
 ]]
 position = Vector2( 805, 255 )
 script = ExtResource( 1 )
-banter_texts = [ "Prepare to die, puny human!", "Say goodbye! Grarrrrwl!" ]
+banter_texts = [ "Brainzzzz...", "Narghmm... B R A I N Z!" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
