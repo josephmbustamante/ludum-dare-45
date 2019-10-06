@@ -52,7 +52,7 @@ var weapon_config = {
 		"speed": 0.25,
 		"sprite": preload("res://Assets/Sprites/coin_anim_f0.png"),
 		"damage": 10,
-		"reach": 0,
+		"reach": 1,
 		"sound": "slash",
 		"name": "Start with Nothing",
 		"restricted": true
