@@ -67,3 +67,7 @@ one_shot = true
 [node name="RollEffect" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="StaminaRegeneration" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true

@@ -13,6 +13,7 @@ export (bool) var input_enabled = true;
 
 export (int) var attack_stamina_cost = 10
 export (int) var dash_stamina_cost = 20
+export (int) var stamina_per_second = 20
 
 var dash_multiplier = 1
 
@@ -26,6 +27,9 @@ func _ready() -> void:
 	$Weapon.set_weapon(PlayerVariables.weapon, strength)
 
 func _process(delta: float) -> void:
+	if stamina < PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["start_value"]:
+		print(delta, stamina_per_second, delta * stamina_per_second)
+		update_stamina(delta * stamina_per_second)
 	if input_enabled:
 		var velocity = Vector2()  # The player's movement vector.
 		if Input.is_action_pressed("right"):
