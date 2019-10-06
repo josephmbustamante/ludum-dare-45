@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/LevelUp.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/LevelUpField.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Retron2000Body.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/LevelUpField.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/Retron2000Small.tres" type="DynamicFont" id=4]
 
 [node name="LevelUp" type="MarginContainer"]
 anchor_right = 1.0
@@ -23,49 +25,58 @@ custom_constants/separation = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Rows"]
 margin_right = 924.0
-margin_bottom = 14.0
+margin_bottom = 33.0
 
 [node name="RemainingPointsLabel" type="Label" parent="Rows/HBoxContainer"]
-margin_right = 115.0
-margin_bottom = 14.0
+margin_right = 222.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
 text = "Remaining Points:"
 
 [node name="RemainingPointsValue" type="Label" parent="Rows/HBoxContainer"]
-margin_left = 119.0
+margin_left = 226.0
 margin_right = 924.0
-margin_bottom = 14.0
+margin_bottom = 33.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 text = "0"
 
-[node name="StrengthLevelUpField" parent="Rows" instance=ExtResource( 2 )]
-margin_top = 34.0
+[node name="StrengthLevelUpField" parent="Rows" instance=ExtResource( 3 )]
+margin_top = 53.0
 margin_right = 924.0
-margin_bottom = 54.0
+margin_bottom = 75.0
 fieldName = "Strength"
 
-[node name="HealthLevelUpField" parent="Rows" instance=ExtResource( 2 )]
-margin_top = 74.0
+[node name="HealthLevelUpField" parent="Rows" instance=ExtResource( 3 )]
+margin_top = 95.0
 margin_right = 924.0
-margin_bottom = 94.0
+margin_bottom = 117.0
 fieldName = "Health"
 
-[node name="SpeedLevelUpField" parent="Rows" instance=ExtResource( 2 )]
-margin_top = 114.0
+[node name="SpeedLevelUpField" parent="Rows" instance=ExtResource( 3 )]
+margin_top = 137.0
 margin_right = 924.0
-margin_bottom = 134.0
+margin_bottom = 159.0
 fieldName = "Speed"
 
 [node name="HSeparator" type="ColorRect" parent="Rows"]
-margin_top = 154.0
+margin_top = 179.0
 margin_right = 924.0
-margin_bottom = 460.0
+margin_bottom = 452.0
 size_flags_vertical = 3
 color = Color( 1, 1, 1, 0 )
 
-[node name="Confirm" type="Button" parent="Rows"]
-margin_top = 480.0
+[node name="CenterContainer" type="CenterContainer" parent="Rows"]
+margin_top = 472.0
 margin_right = 924.0
 margin_bottom = 500.0
+
+[node name="Confirm" type="Button" parent="Rows/CenterContainer"]
+margin_left = 423.0
+margin_right = 501.0
+margin_bottom = 28.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 4 )
 text = "Confirm"
 [connection signal="decrease_pressed" from="Rows/StrengthLevelUpField" to="." method="_on_StrengthLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="Rows/StrengthLevelUpField" to="." method="_on_StrengthLevelUpField_increase_pressed"]
@@ -73,4 +84,4 @@ text = "Confirm"
 [connection signal="increase_pressed" from="Rows/HealthLevelUpField" to="." method="_on_HealthLevelUpField_increase_pressed"]
 [connection signal="decrease_pressed" from="Rows/SpeedLevelUpField" to="." method="_on_SpeedLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="Rows/SpeedLevelUpField" to="." method="_on_SpeedLevelUpField_increase_pressed"]
-[connection signal="pressed" from="Rows/Confirm" to="." method="_on_Confirm_pressed"]
+[connection signal="pressed" from="Rows/CenterContainer/Confirm" to="." method="_on_Confirm_pressed"]

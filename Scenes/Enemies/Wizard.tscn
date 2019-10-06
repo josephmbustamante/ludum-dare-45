@@ -1,14 +1,14 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/ogre_idle_anim_f0.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/ogre_idle_anim_f1.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/ogre_idle_anim_f2.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/ogre_idle_anim_f3.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/ogre_run_anim_f0.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/ogre_run_anim_f1.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/ogre_run_anim_f2.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/ogre_run_anim_f3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/wizzard_m_idle_anim_f0.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/wizzard_m_idle_anim_f1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/wizzard_m_idle_anim_f2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/wizzard_m_idle_anim_f3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/wizzard_m_run_anim_f0.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/wizzard_m_run_anim_f1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/wizzard_m_run_anim_f2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/wizzard_m_run_anim_f3.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Weapon.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Resources/HitAnimation.tres" type="Animation" id=11]
 
@@ -28,12 +28,14 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 15 )
 
-[node name="Ogre" type="KinematicBody2D" groups=[
+[node name="Wizard" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 position = Vector2( 805, 255 )
 script = ExtResource( 1 )
-banter_texts = [ "I'll grind your bones to make my bread!", "Gotta job to do. Nothing personal." ]
+banter_texts = [ "That's cute. Why don't you put that down before you hurt yourself?", "I warned you. You'd be better off unarmed.", "It takes true courage to start with nothing. I'll still destroy you." ]
+weapon_type = 5
+is_final_boss = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
