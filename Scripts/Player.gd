@@ -32,9 +32,10 @@ func _process(delta: float) -> void:
 
 	if $DashEffect.is_stopped():
 		dash_multiplier = 1
+		$Weapon.disable_critical_hit()
 	else:
 		dash_multiplier = 5
-		
+
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier)) * dash_multiplier
 		$AnimatedSprite.play("run")
@@ -54,6 +55,7 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_J) && $DashCooldown.is_stopped():
 		$DashCooldown.start()
 		$DashEffect.start()
+		$Weapon.enable_critical_hit()
 
 	if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped():
 		$Weapon.attack()

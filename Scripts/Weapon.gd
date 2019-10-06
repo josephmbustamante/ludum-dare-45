@@ -8,6 +8,7 @@ export (int) var base_reach = 1
 
 var base_x_offset: int = 20
 var sounds
+var critical_hit = 1.0
 
 var group_to_attack: String
 
@@ -35,6 +36,12 @@ func set_weapon(weapon_id: int, strength: int):
 	damage = w["damage"] + (strength * strength_multiplier)
 	sounds = sounds_config[w["sound"]]
 
+func enable_critical_hit():
+	critical_hit = 1.75
+
+func disable_critical_hit():
+	critical_hit = 1.0
+
 func attack():
 	$WeaponSprite/AnimationPlayer.play("WeaponSwing")
 	audio_player.stream = swing_sound
@@ -45,6 +52,6 @@ func _on_Area2D_body_entered(body: PhysicsBody2D) -> void:
 		if body.has_method("handle_hit"):
 			audio_player.stream = sounds[randi() % sounds.size()]
 			audio_player.play()
-			body.handle_hit(damage)
+			body.handle_hit(damage * critical_hit)
 
 
