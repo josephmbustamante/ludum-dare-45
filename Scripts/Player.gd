@@ -22,6 +22,9 @@ var facing_left: bool = false
 signal player_health_changed(new_health)
 signal player_stamina_changed(new_stamina)
 
+func has_weapon():
+	return PlayerVariables.weapon != Global.WEAPON.unarmed
+
 func _ready() -> void:
 	$Weapon.set_group_to_attack("enemy")
 	$Weapon.set_weapon(PlayerVariables.weapon, strength)

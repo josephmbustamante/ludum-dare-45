@@ -25,7 +25,13 @@ func _ready() -> void:
 	ui.initialize_player_health(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"])
 	ui.initialize_player_stamina(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["current_value"])
 
-	if enemies[0].banter_texts.size() > 0:
+	if enemies[0].is_final_boss && player.has_weapon():
+		$EnemyBanterBox/Label.text = enemies[0].banter_texts[0]
+		$EnemyBanterBox.show()
+	elif enemies[0].is_final_boss && !player.has_weapon():
+		$EnemyBanterBox/Label.text = enemies[0].banter_texts[2]
+		$EnemyBanterBox.show()
+	elif enemies[0].banter_texts.size() > 0:
 		$EnemyBanterBox/Label.text = enemies[0].banter_texts[randi() % enemies[0].banter_texts.size()]
 		$EnemyBanterBox.show()
 	else:
@@ -50,6 +56,13 @@ func _on_VictoryButton_pressed():
 
 func start_battle():
 	$EnemyBanterBox.hide()
-	player.input_enabled = true
 	for enemy in enemies:
+		if enemy.is_final_boss && player.has_weapon():
+			if !PlayerVariables.unarmedStyleEnabled:
+				PlayerVariables.unarmedStyleEnabled = true
+				$EnemyBanterBox/Label.text = enemies[0].banter_texts[1]
+				$EnemyBanterBox.show()
+				return
+			player.handle_hit(10000000)
 		enemy.set_target(player)
+	player.input_enabled = true
