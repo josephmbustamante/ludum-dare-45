@@ -1,25 +1,35 @@
 extends Node2D
 
 onready var player = $Player
+onready var enemies = []
 
 onready var ui = $BattleUI
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player.input_enabled = false
+
 	var stage = Global.stages[Global.current_stage]
 	var health = 0
 	for i in range(stage.count):
 		var enemy = stage.enemy.instance()
 		add_child(enemy)
-		enemy.set_target(player)
 		var x = rand_range(450, 900)
 		var y = rand_range(10, 600)
 		enemy.position = Vector2(x, y)
 		health += enemy.health
 		enemy.connect("enemy_health_changed", ui, "handle_enemy_health_changed")
+		enemies.push_back(enemy)
 
 	ui.initialize_enemy_health(health)
 	ui.initialize_player_health(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"])
+
+	if enemies[0].banter_texts.size() > 0:
+		$EnemyBanterBox/Label.text = enemies[0].banter_texts[randi() % enemies[0].banter_texts.size()]
+		$EnemyBanterBox.show()
+	else:
+		$EnemyBanterBox.hide()
+		start_battle()
 
 	if !Global.music_player.playing:
 		Global.music_player.play()
@@ -36,3 +46,9 @@ func _on_VictoryButton_pressed():
 	Global.current_stage += 1
 	Global.goto_scene("res://Scenes/LevelUp.tscn")
 	queue_free()
+
+func start_battle():
+	$EnemyBanterBox.hide()
+	player.input_enabled = true
+	for enemy in enemies:
+		enemy.set_target(player)

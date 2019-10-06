@@ -4,6 +4,7 @@ export (int) var health = 100
 export (int) var speed = 50
 export (int) var hit_radius = 30
 export (int) var strength = 2
+export (Array) var banter_texts = []
 
 var target: PhysicsBody2D = null
 
