@@ -54,6 +54,7 @@ margin_right = 944.0
 margin_bottom = 257.0
 rect_min_size = Vector2( 600, 40 )
 custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.764706, 0.290196, 0.290196, 1 )
 align = 1
 autowrap = true
 uppercase = true

@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		dash_multiplier = 1
 	else:
 		dash_multiplier = 5
-		
+
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier)) * dash_multiplier
 		$AnimatedSprite.play("run")

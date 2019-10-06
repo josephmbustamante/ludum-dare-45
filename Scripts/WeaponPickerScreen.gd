@@ -19,7 +19,9 @@ func _ready():
 
 	# This line has no text / is invisible until the player dies once
 	if (PlayerVariables.deathCount > 0):
-		$Rows/DeathCountText.text = str("YOU HAVE DIED %s TIMES", PlayerVariables.deathCount)
+		$Rows/DeathCountText.text = str("YOU HAVE DIED ", PlayerVariables.deathCount, " TIMES")
+	else:
+		$Rows/DeathCountText.text = ""
 
 func _process(delta: float) -> void:
 	# don't allow starting the game if we have no selected weapon
