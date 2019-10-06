@@ -32,6 +32,7 @@ func _ready() -> void:
 	$Weapon.set_group_to_attack("enemy")
 	$Weapon.set_weapon(PlayerVariables.weapon, strength)
 	if PlayerVariables.weapon == Global.WEAPON.unarmed:
+		$Weapon/WeaponSprite.visible = false
 		$Weapon.position = Vector2(0, 0)
 		($Weapon as Node2D).translate(Vector2(0, 20))
 		$Weapon/WeaponHitBox/CollisionShape2D.translate(Vector2(-22, -15))

@@ -15,7 +15,7 @@ func _ready() -> void:
 		var enemy = stage.enemy.instance()
 		add_child(enemy)
 		var x = rand_range(450, 900)
-		var y = rand_range(10, 600)
+		var y = rand_range(200, 500)
 		enemy.position = Vector2(x, y)
 		health += enemy.health
 		enemy.connect("enemy_health_changed", ui, "handle_enemy_health_changed")

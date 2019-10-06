@@ -27,15 +27,14 @@ text = "Ability:"
 align = 2
 
 [node name="Decrease" type="Button" parent="."]
-margin_left = 170.0
-margin_right = 195.0
+margin_right = 25.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 25, 40 )
 mouse_default_cursor_shape = 2
 text = "-"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 215.0
+margin_left = 45.0
 margin_right = 216.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
