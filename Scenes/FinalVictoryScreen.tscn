@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/theme.tres" type="Theme" id=1]
-[ext_resource path="res://Resources/Retron2000Title.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/FinalVictoryScreen.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Retron2000Title.tres" type="DynamicFont" id=3]
 
 [node name="FinalVictoryScreen" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 12.4444
@@ -23,30 +25,28 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 980.0
 margin_bottom = 557.0
-custom_constants/separation = 75
+custom_constants/separation = 50
 
 [node name="HeaderText" type="Label" parent="MarginContainer/Rows"]
 margin_right = 960.0
 margin_bottom = 48.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "CONGRATULATIONS! YOU HAVE WON!"
 align = 1
 uppercase = true
 
 [node name="StoryText" type="Label" parent="MarginContainer/Rows"]
-margin_top = 123.0
+margin_top = 98.0
 margin_right = 960.0
-margin_bottom = 186.0
+margin_bottom = 161.0
 text = "You have proven yourself for the gods, and they have decided to grant you another chance at life."
 align = 1
 autowrap = true
 
 [node name="DeathSection" type="VBoxContainer" parent="MarginContainer/Rows"]
-editor/display_folded = true
-margin_top = 261.0
+margin_top = 211.0
 margin_right = 960.0
-margin_bottom = 412.0
-size_flags_vertical = 3
+margin_bottom = 281.0
 custom_constants/separation = 10
 
 [node name="DeathText" type="Label" parent="MarginContainer/Rows/DeathSection"]
@@ -60,22 +60,36 @@ autowrap = true
 margin_top = 40.0
 margin_right = 960.0
 margin_bottom = 70.0
+custom_colors/font_color = Color( 0.698039, 0, 0, 1 )
 text = "0"
 align = 1
 autowrap = true
 
-[node name="DeathRatingText" type="Label" parent="MarginContainer/Rows/DeathSection"]
-margin_top = 80.0
+[node name="RatingSection" type="VBoxContainer" parent="MarginContainer/Rows"]
+margin_top = 331.0
 margin_right = 960.0
-margin_bottom = 110.0
+margin_bottom = 401.0
+custom_constants/separation = 10
+
+[node name="DeathRatingHeaderText" type="Label" parent="MarginContainer/Rows/RatingSection"]
+margin_right = 960.0
+margin_bottom = 30.0
+text = "RATING:"
+align = 1
+autowrap = true
+
+[node name="DeathRatingText" type="Label" parent="MarginContainer/Rows/RatingSection"]
+margin_top = 40.0
+margin_right = 960.0
+margin_bottom = 70.0
 text = "EXCELLENT"
 align = 1
 autowrap = true
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows"]
-margin_top = 487.0
+margin_top = 451.0
 margin_right = 960.0
-margin_bottom = 537.0
+margin_bottom = 501.0
 
 [node name="Button" type="Button" parent="MarginContainer/Rows/CenterContainer"]
 margin_left = 380.0
