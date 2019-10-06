@@ -44,6 +44,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("click"):
 		$Weapon.attack()
 
+	if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped():
+		$Weapon.attack()
+		$AttackCooldown.start()
+
 	move_and_slide(velocity)
 
 func handle_hit(damage: int):

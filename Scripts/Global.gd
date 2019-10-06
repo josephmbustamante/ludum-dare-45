@@ -61,6 +61,8 @@ var weapon_config = {
 var enemies = [
 	load("res://Scenes/Enemies/BigZombie.tscn"),
 	load("res://Scenes/Enemies/Ogre.tscn"),
+	load("res://Scenes/Enemies/BigDemon.tscn"),
+	load("res://Scenes/Enemies/Imp.tscn"),
 ]
 
 var enemy_defeated = false
