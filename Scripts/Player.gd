@@ -60,22 +60,18 @@ func _process(delta: float) -> void:
 		elif velocity.x > 0 && facing_left:
 			scale.x *= -1
 			facing_left = false
+			
+		if Input.is_action_just_pressed("dash")  && $DashCooldown.is_stopped() && stamina >= dash_stamina_cost:
+			update_stamina(-dash_stamina_cost)
+			$DashCooldown.start()
+			$DashEffect.start()
+			$Weapon.enable_critical_hit()
 
-		if Input.is_action_just_pressed("click"):
+		if Input.is_action_just_pressed("attack") && $AttackCooldown.is_stopped() && stamina >= attack_stamina_cost:
+			update_stamina(-attack_stamina_cost)
 			$Weapon.attack()
-
-        if Input.is_action_just_pressed("attack") && $AttackCooldown.is_stopped() && stamina >= attack_stamina_cost:
-            update_stamina(-attack_stamina_cost)
-            $Weapon.attack()
-            $AttackCooldown.start()
-        
-        if Input.is_action_just_pressed("dash")  && $DashCooldown.is_stopped()  && stamina >= dash_stamina_cost:
-            update_stamina(-dash_stamina_cost)
-            $DashCooldown.start()
-            $DashEffect.start()
-            $Weapon.enable_critical_hit()
-
-
+			$AttackCooldown.start()
+		        
 		if Input.is_key_pressed(KEY_L) && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped():
 			$RollCooldown.start()
 			$RollEffect.start()
