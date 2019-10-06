@@ -72,7 +72,7 @@ margin_right = 960.0
 margin_bottom = 471.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_horizontal = 3
-custom_constants/separation = 80
+custom_constants/separation = 50
 alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Rows"]
