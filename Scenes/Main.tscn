@@ -30,4 +30,25 @@ position = Vector2( 90, 270 )
 [node name="BattleUI" parent="." instance=ExtResource( 4 )]
 margin_right = 1025.0
 margin_bottom = 610.0
+
+[node name="VictoryMessage" type="Label" parent="."]
+visible = false
+margin_left = 390.0
+margin_top = 60.0
+margin_right = 473.0
+margin_bottom = 77.0
+rect_scale = Vector2( 3, 3 )
+text = "Victory!"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="VictoryButton" type="Button" parent="."]
+visible = false
+margin_left = 450.0
+margin_top = 130.0
+margin_right = 581.0
+margin_bottom = 150.0
+text = "Onward!"
 [connection signal="player_health_changed" from="Player" to="BattleUI" method="handle_player_health_changed"]
+[connection signal="pressed" from="VictoryButton" to="." method="_on_VictoryButton_pressed"]

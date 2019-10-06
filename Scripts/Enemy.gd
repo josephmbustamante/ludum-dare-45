@@ -21,6 +21,8 @@ func set_target(new_target: PhysicsBody2D):
 
 func _process(delta: float) -> void:
 	var velocity = Vector2()  # The player's movement vector.
+	if Global.enemy_defeated:
+		return
 
 	if target != null:
 		var distance_to_target = target.global_position - global_position
@@ -51,6 +53,6 @@ func handle_hit(damage: int):
 	$AnimationPlayer.play("HitAnimation")
 	emit_signal("enemy_health_changed", health)
 	if health <= 0:
-		Global.current_stage += 1
-		Global.goto_scene("res://Scenes/LevelUp.tscn")
-		queue_free()
+		Global.enemy_defeated = true
+		$AnimatedSprite.rotation = -90
+

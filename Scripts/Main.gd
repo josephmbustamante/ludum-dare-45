@@ -13,3 +13,16 @@ func _ready() -> void:
 	ui.initialize_player_health(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"])
 	ui.initialize_enemy_health(enemy.health)
 	enemy.connect("enemy_health_changed", ui, "handle_enemy_health_changed")
+
+func _process(delta: float) -> void:
+	if Global.enemy_defeated:
+		$VictoryButton.show()
+		$VictoryMessage.show()
+
+func _on_VictoryButton_pressed():
+	$VictoryButton.hide()
+	$VictoryMessage.hide()
+	Global.enemy_defeated = false
+	Global.current_stage += 1
+	Global.goto_scene("res://Scenes/LevelUp.tscn")
+	queue_free()
