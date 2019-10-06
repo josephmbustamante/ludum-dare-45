@@ -9,6 +9,7 @@ export (Array) var banter_texts = []
 var target: PhysicsBody2D = null
 
 var facing_left: bool = false
+var enemy_defeated: bool = false
 
 signal enemy_health_changed(new_health)
 
@@ -22,7 +23,7 @@ func set_target(new_target: PhysicsBody2D):
 
 func _process(delta: float) -> void:
 	var velocity = Vector2()  # The player's movement vector.
-	if Global.enemy_defeated:
+	if enemy_defeated:
 		return
 
 	if target != null:
@@ -50,10 +51,19 @@ func _process(delta: float) -> void:
 	move_and_slide(velocity)
 
 func handle_hit(damage: int):
+	if enemy_defeated:
+		return
+	var starting_health = health
 	health -= damage
-	$AnimationPlayer.play("HitAnimation")
-	emit_signal("enemy_health_changed", health)
+	var health_lost = damage
 	if health <= 0:
-		Global.enemy_defeated = true
+		health_lost = starting_health
+
+	$AnimationPlayer.play("HitAnimation")
+	emit_signal("enemy_health_changed", health_lost)
+	if health <= 0:
+		enemy_defeated = true
+		$CollisionShape2D.disabled = true
+		$Weapon.hide()
 		$AnimatedSprite.rotation = -90
 

@@ -28,11 +28,13 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 6 )
 
-[node name="Ogre" type="KinematicBody2D" groups=[
+[node name="Imp" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 position = Vector2( 805, 255 )
 script = ExtResource( 1 )
+health = 20
+speed = 100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )

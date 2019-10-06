@@ -1,32 +1,40 @@
 extends MarginContainer
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var weapon_select = preload("res://Scenes/WeaponSelect.tscn")
+var selects: Dictionary
+var selected_weapon_id
 
-# Called when the node enters the scene tree for the first time.
+onready var startButton = $Rows/CenterContainer/Button
 
-onready var menuButton = $VBoxContainer/HBoxContainer/VBoxContainer/MenuButton
-onready var startButton = $VBoxContainer/HBoxContainer/VBoxContainer2/Button
-
-var starting_message = "You've died. But rather than send you immediately to the afterlife, the gods have chosen you for reincarnation to fight in their arena. Equip yourself, for battle looms near."
-var died_in_arena_message = "You've died %s times. Equip yourself, for battle looms near."
 
 func _ready():
-	var popup = menuButton.get_popup()
-	popup.connect("id_pressed", self, "weapon_menu_selection_made")
-	var mb = menuButton.get_popup()
 	for weapon in Global.WEAPON:
-		var wc = Global.weapon_config[Global.WEAPON[weapon]]
-		if !wc["restricted"]:
-			mb.add_item(Global.weapon_config[Global.WEAPON[weapon]]["name"], Global.WEAPON[weapon])
+		var weapon_config = Global.weapon_config[Global.WEAPON[weapon]]
+		if !weapon_config["restricted"]:
+			create_weapon_select(Global.WEAPON[weapon], weapon_config["sprite"], weapon_config["name"], weapon_config["damage"], weapon_config["speed"])
 
 	if (PlayerVariables.unarmedStyleEnabled):
-		mb.add_item("Start with nothing", Global.WEAPON.unarmed)
+		var weapon_config = Global.weapon_config[Global.WEAPON.unarmed]
+		create_weapon_select(Global.WEAPON.unarmed, weapon_config["sprite"], weapon_config["name"], weapon_config["damage"], weapon_config["speed"])
+
+	# This line has no text / is invisible until the player dies once
 	if (PlayerVariables.deathCount > 0):
-		$VBoxContainer/RichTextLabel.text = died_in_arena_message % PlayerVariables.deathCount
+		$Rows/DeathCountText.text = str("YOU HAVE DIED ", PlayerVariables.deathCount, " TIMES")
 	else:
-		$VBoxContainer/RichTextLabel.text = starting_message
+		$Rows/DeathCountText.text = ""
+
+func _process(delta: float) -> void:
+	# don't allow starting the game if we have no selected weapon
+	startButton.disabled = selected_weapon_id == null
+
+func create_weapon_select(weapon_id: int, sprite, name: String, damage: int, speed: int):
+	# create a weapon select for each weapon and add it to the weapon select section
+	var select = weapon_select.instance()
+	$Rows/WeaponColumns.add_child(select)
+	select.initialize(weapon_id, sprite, name, damage, speed)
+	# send a message that the weapon has been selected
+	select.connect("weapon_selected", self, "weapon_menu_selection_made")
+	selects[weapon_id] = select
 
 func _on_Start_Button_pressed():
 	print("Button pressed")
@@ -34,5 +42,12 @@ func _on_Start_Button_pressed():
 
 func weapon_menu_selection_made(id):
 	print(id)
+	# unselect the current weapon (change the color) if one is selected
+	if selected_weapon_id != null:
+		print("unselecting", selected_weapon_id)
+		print(selects[selected_weapon_id])
+		selects[selected_weapon_id].unselect()
+
+	# select the new weapon
+	selected_weapon_id = id
 	PlayerVariables.weapon = id
-	startButton.disabled = false

@@ -10,6 +10,8 @@ export (int) var speed_multiplier = 10
 export (int) var base_speed = 75
 export (bool) var input_enabled = true;
 
+var dash_multiplier = 1
+
 var facing_left: bool = false
 
 signal player_health_changed(new_health)
@@ -30,8 +32,14 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("up"):
 			velocity.y -= 1
 	
+		if $DashEffect.is_stopped():
+			dash_multiplier = 1
+			$Weapon.disable_critical_hit()
+		else:
+			dash_multiplier = 5
+	
 		if velocity.length() > 0:
-			velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier))
+			velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier)) * dash_multiplier
 			$AnimatedSprite.play("run")
 		else:
 			$AnimatedSprite.play("idle")
@@ -45,6 +53,11 @@ func _process(delta: float) -> void:
 	
 		if Input.is_action_just_pressed("click"):
 			$Weapon.attack()
+	
+		if Input.is_key_pressed(KEY_J) && $DashCooldown.is_stopped():
+			$DashCooldown.start()
+			$DashEffect.start()
+			$Weapon.enable_critical_hit()
 	
 		if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped():
 			$Weapon.attack()

@@ -53,16 +53,15 @@ var weapon_config = {
 		"damage": 50,
 		"reach": 10,
 		"sound": "slash",
-		"name": "Big Sword",
+		"name": "Unarmed",
 		"restricted": true
 	},
 }
-
-var enemies = [
-	load("res://Scenes/Enemies/BigZombie.tscn"),
-	load("res://Scenes/Enemies/Ogre.tscn"),
-	load("res://Scenes/Enemies/BigDemon.tscn"),
-	load("res://Scenes/Enemies/Imp.tscn"),
+var stages = [
+	{ "enemy": load("res://Scenes/Enemies/BigZombie.tscn"), "count": 1 },
+	{ "enemy": load("res://Scenes/Enemies/Ogre.tscn"), "count": 1 },
+	{ "enemy": load("res://Scenes/Enemies/BigDemon.tscn"), "count": 1 },
+	{ "enemy": load("res://Scenes/Enemies/Imp.tscn"), "count": 10 },
 ]
 
 var enemy_defeated = false
