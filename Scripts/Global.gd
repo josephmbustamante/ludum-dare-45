@@ -66,10 +66,16 @@ var enemies = [
 var enemy_defeated = false
 
 var current_stage = 0
+var music_player: AudioStreamPlayer
 
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
+	if !music_player:
+		music_player = AudioStreamPlayer.new()
+		music_player.volume_db = -6
+		music_player.stream = load("res://Assets/Music/ld45_theme.wav")
+		self.add_child(music_player)
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,
@@ -102,3 +108,4 @@ func _deferred_goto_scene(path):
 
 func player_died():
 	PlayerVariables.deathCount += 1
+	music_player.stop()

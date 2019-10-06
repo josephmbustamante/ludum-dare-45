@@ -13,6 +13,8 @@ func _ready() -> void:
 	ui.initialize_player_health(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"])
 	ui.initialize_enemy_health(enemy.health)
 	enemy.connect("enemy_health_changed", ui, "handle_enemy_health_changed")
+	if !Global.music_player.playing:
+		Global.music_player.play()
 
 func _process(delta: float) -> void:
 	if Global.enemy_defeated:
