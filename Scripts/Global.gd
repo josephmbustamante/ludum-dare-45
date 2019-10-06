@@ -65,6 +65,8 @@ var enemies = [
 	load("res://Scenes/Enemies/Imp.tscn"),
 ]
 
+var enemy_defeated = false
+
 var current_stage = 0
 
 func _ready():
