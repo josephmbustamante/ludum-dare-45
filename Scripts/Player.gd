@@ -79,7 +79,7 @@ func _process(delta: float) -> void:
 		elif velocity.x > 0 && facing_left:
 			scale.x *= -1
 			facing_left = false
-			
+
 		if Input.is_action_just_pressed("dash")  && $DashCooldown.is_stopped() && stamina >= dash_stamina_cost:
 			update_stamina(-dash_stamina_cost)
 			$DashCooldown.start()
@@ -89,8 +89,8 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("attack") && $AttackCooldown.is_stopped() && stamina >= attack_stamina_cost:
 			update_stamina(-attack_stamina_cost)
 			$Weapon.attack()
-			$AttackCooldown.start(5)
-		        
+			$AttackCooldown.start(0.5)
+
 		if Input.is_action_just_pressed("dodge") && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped() && stamina >= dodge_stamina_cost:
 			update_stamina(-dodge_stamina_cost)
 			$RollCooldown.start()
@@ -101,7 +101,7 @@ func _process(delta: float) -> void:
 func handle_hit(damage: int):
 	update_health(damage)
 	$AnimationPlayer.play("HitAnimation")
-		
+
 	if health <= 0:
 		defeated = true
 		input_enabled = false

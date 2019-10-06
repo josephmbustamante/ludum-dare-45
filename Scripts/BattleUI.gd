@@ -7,7 +7,7 @@ var enemy_health = 0
 
 func initialize_player_health(max_health: int):
 	player_health_bar.initialize_health_bar(max_health)
-	
+
 func initialize_player_stamina(stamina: int):
 	player_stamina_bar.initialize_health_bar(stamina)
 

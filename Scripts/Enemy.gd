@@ -42,10 +42,28 @@ func _process(delta: float) -> void:
 			return
 		else:
 			var distance_to_target = target.global_position - global_position
+
+			# we want the enemy to stand either to the right or left of the player
+			var position_to_occupy
+			# if we are to the left of the player, set the desired position to be to their left and face right
+			if distance_to_target.x > 0:
+				position_to_occupy = Vector2(target.global_position.x - 20, target.global_position.y)
+				if facing_left:
+					scale.x *= -1
+					facing_left = false
+			# if we are to the right of the player, set the desired position to be to their right and face left
+			else:
+				position_to_occupy = Vector2(target.global_position.x + 20, target.global_position.y)
+				if !facing_left:
+					scale.x *= -1
+					facing_left = true
+
 			# only keep moving if we haven't reached the target yet
-			if distance_to_target.length() >= hit_radius:
-				velocity = target.global_position - global_position
-			elif $AttackCooldown.is_stopped():
+			if (position_to_occupy - global_position).length() > 10:
+				velocity = position_to_occupy - global_position
+
+			# if we're close enough to the player, attack, even if we still need to keep moving a bit
+			if distance_to_target.length() < hit_radius && $AttackCooldown.is_stopped():
 				$Weapon.attack()
 				$AttackCooldown.start()
 
@@ -54,13 +72,6 @@ func _process(delta: float) -> void:
 		$AnimatedSprite.play("run")
 	else:
 		$AnimatedSprite.play("idle")
-
-	if velocity.x < 0 && !facing_left:
-		scale.x *= -1
-		facing_left = true
-	elif velocity.x > 0 && facing_left:
-		scale.x *= -1
-		facing_left = false
 
 	move_and_slide(velocity)
 
