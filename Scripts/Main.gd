@@ -21,6 +21,9 @@ func _ready() -> void:
 	ui.initialize_enemy_health(health)
 	ui.initialize_player_health(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"])
 
+	if !Global.music_player.playing:
+		Global.music_player.play()
+
 func _process(delta: float) -> void:
 	if Global.enemy_defeated:
 		$VictoryButton.show()
