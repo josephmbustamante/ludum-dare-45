@@ -56,3 +56,10 @@ anims/HitAnimation = ExtResource( 12 )
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashEffect" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
