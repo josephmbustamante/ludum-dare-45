@@ -10,6 +10,7 @@ onready var stamina = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina
 export (int) var speed_multiplier = 10
 export (int) var base_speed = 75
 export (bool) var input_enabled = true;
+var defeated = false;
 
 export (int) var attack_stamina_cost = 10.0
 export (int) var dash_stamina_cost = 20.0
@@ -82,7 +83,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("attack") && $AttackCooldown.is_stopped() && stamina >= attack_stamina_cost:
 			update_stamina(-attack_stamina_cost)
 			$Weapon.attack()
-			$AttackCooldown.start()
+			$AttackCooldown.start(5)
 		        
 		if Input.is_action_just_pressed("dodge") && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped() && stamina >= dodge_stamina_cost:
 			update_stamina(-dodge_stamina_cost)
@@ -96,9 +97,17 @@ func handle_hit(damage: int):
 	$AnimationPlayer.play("HitAnimation")
 		
 	if health <= 0:
-		Global.player_died()
-		Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")
-		queue_free()
+		defeated = true
+		input_enabled = false
+		$Weapon.hide()
+		$AnimatedSprite.rotation = -90
+		$AnimatedSprite.playing = false
+		$DeathTimer.start()
+
+func finish_death_transition():
+	Global.player_died()
+	Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")
+	queue_free()
 
 func update_health(damage: int):
 	health -= damage
