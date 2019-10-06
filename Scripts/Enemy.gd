@@ -38,13 +38,16 @@ func _process(delta: float) -> void:
 		return
 
 	if target != null:
-		var distance_to_target = target.global_position - global_position
-		# only keep moving if we haven't reached the target yet
-		if distance_to_target.length() >= hit_radius:
-			velocity = target.global_position - global_position
-		elif $AttackCooldown.is_stopped():
-			$Weapon.attack()
-			$AttackCooldown.start()
+		if target.defeated:
+			return
+		else:
+			var distance_to_target = target.global_position - global_position
+			# only keep moving if we haven't reached the target yet
+			if distance_to_target.length() >= hit_radius:
+				velocity = target.global_position - global_position
+			elif $AttackCooldown.is_stopped():
+				$Weapon.attack()
+				$AttackCooldown.start()
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -77,4 +80,5 @@ func handle_hit(damage: int):
 		$CollisionShape2D.disabled = true
 		$Weapon.hide()
 		$AnimatedSprite.rotation = -90
+		$AnimatedSprite.playing = false
 

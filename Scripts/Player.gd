@@ -9,6 +9,7 @@ onready var speed = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.speed]["c
 export (int) var speed_multiplier = 10
 export (int) var base_speed = 75
 export (bool) var input_enabled = true;
+var defeated = false;
 
 var dash_multiplier = 1
 
@@ -72,7 +73,7 @@ func _process(delta: float) -> void:
 
 		if Input.is_key_pressed(KEY_K) && $AttackCooldown.is_stopped() && $RollEffect.is_stopped():
 			$Weapon.attack()
-			$AttackCooldown.start()
+			$AttackCooldown.start(5)
 
 		move_and_slide(velocity)
 
@@ -81,9 +82,17 @@ func handle_hit(damage: int):
 	$AnimationPlayer.play("HitAnimation")
 	emit_signal("player_health_changed", health)
 	if health <= 0:
-		Global.player_died()
-		Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")
-		queue_free()
+		defeated = true
+		input_enabled = false
+		$Weapon.hide()
+		$AnimatedSprite.rotation = -90
+		$AnimatedSprite.playing = false
+		$DeathTimer.start()
+
+func finish_death_transition():
+	Global.player_died()
+	Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")
+	queue_free()
 
 
 
