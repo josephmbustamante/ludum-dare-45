@@ -9,6 +9,7 @@ onready var stamina = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina
 # Instead, we keep the 1-10 scale, and just have a multiplier here
 export (int) var speed_multiplier = 10
 export (int) var base_speed = 75
+export (bool) var input_enabled = true;
 
 export (int) var attack_stamina_cost = 10
 export (int) var dash_stamina_cost = 20
@@ -25,47 +26,61 @@ func _ready() -> void:
 	$Weapon.set_weapon(PlayerVariables.weapon, strength)
 
 func _process(delta: float) -> void:
-	var velocity = Vector2()  # The player's movement vector.
-	if Input.is_action_pressed("right"):
-		velocity.x += 1
-	if Input.is_action_pressed("left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("down"):
-		velocity.y += 1
-	if Input.is_action_pressed("up"):
-		velocity.y -= 1
+	if input_enabled:
+		var velocity = Vector2()  # The player's movement vector.
+		if Input.is_action_pressed("right"):
+			velocity.x += 1
+		if Input.is_action_pressed("left"):
+			velocity.x -= 1
+		if Input.is_action_pressed("down"):
+			velocity.y += 1
+		if Input.is_action_pressed("up"):
+			velocity.y -= 1
 
-	if $DashEffect.is_stopped():
-		dash_multiplier = 1
-		$Weapon.disable_critical_hit()
-	else:
-		dash_multiplier = 5
+		if !$DashEffect.is_stopped():
+			dash_multiplier = 5
+			$Weapon.enable_critical_hit()
+		elif !$RollEffect.is_stopped():
+			dash_multiplier = 3
+			$CollisionShape2D.disabled = true
+		else:
+			dash_multiplier = 1
+			$Weapon.disable_critical_hit()
+			$CollisionShape2D.disabled = false
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier)) * dash_multiplier
-		$AnimatedSprite.play("run")
-	else:
-		$AnimatedSprite.play("idle")
+		if velocity.length() > 0:
+			velocity = velocity.normalized() * (base_speed + (speed * speed_multiplier)) * dash_multiplier
+			$AnimatedSprite.play("run")
+		else:
+			$AnimatedSprite.play("idle")
 
-	if velocity.x < 0 && !facing_left:
-		scale.x *= -1
-		facing_left = true
-	elif velocity.x > 0 && facing_left:
-		scale.x *= -1
-		facing_left = false
+		if velocity.x < 0 && !facing_left:
+			scale.x *= -1
+			facing_left = true
+		elif velocity.x > 0 && facing_left:
+			scale.x *= -1
+			facing_left = false
 
-	if Input.is_action_just_pressed("attack") && $AttackCooldown.is_stopped() && stamina >= attack_stamina_cost:
-		update_stamina(-attack_stamina_cost)
-		$Weapon.attack()
-		$AttackCooldown.start()
-	
-	if Input.is_action_just_pressed("dash")  && $DashCooldown.is_stopped()  && stamina >= dash_stamina_cost:
-		update_stamina(-dash_stamina_cost)
-		$DashCooldown.start()
-		$DashEffect.start()
-		$Weapon.enable_critical_hit()
-	
-	move_and_slide(velocity)
+		if Input.is_action_just_pressed("click"):
+			$Weapon.attack()
+
+        if Input.is_action_just_pressed("attack") && $AttackCooldown.is_stopped() && stamina >= attack_stamina_cost:
+            update_stamina(-attack_stamina_cost)
+            $Weapon.attack()
+            $AttackCooldown.start()
+        
+        if Input.is_action_just_pressed("dash")  && $DashCooldown.is_stopped()  && stamina >= dash_stamina_cost:
+            update_stamina(-dash_stamina_cost)
+            $DashCooldown.start()
+            $DashEffect.start()
+            $Weapon.enable_critical_hit()
+
+
+		if Input.is_key_pressed(KEY_L) && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped():
+			$RollCooldown.start()
+			$RollEffect.start()
+
+		move_and_slide(velocity)
 
 func handle_hit(damage: int):
 	update_health(damage)

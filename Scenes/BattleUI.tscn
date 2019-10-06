@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/BattleUI.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Retron2000Body.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.772549, 0.72549, 0.207843, 1 )
@@ -33,13 +34,14 @@ custom_constants/separation = 20
 
 [node name="Columns" type="HBoxContainer" parent="Rows"]
 margin_right = 984.0
-margin_bottom = 14.0
+margin_bottom = 33.0
 size_flags_horizontal = 3
 custom_constants/separation = 20
 
 [node name="PlayerLabel" type="Label" parent="Rows/Columns"]
-margin_right = 39.0
-margin_bottom = 14.0
+margin_right = 91.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
 text = "Player"
 
 [node name="PlayerBars" type="VBoxContainer" parent="Rows/Columns"]
@@ -62,16 +64,18 @@ size_flags_vertical = 3
 custom_styles/fg = SubResource( 1 )
 
 [node name="Placeholder" type="VSeparator" parent="Rows/Columns"]
-margin_left = 488.0
-margin_right = 492.0
-margin_bottom = 14.0
+margin_left = 495.0
+margin_right = 499.0
+margin_bottom = 33.0
 
-[node name="EnemyHealthBar" parent="Rows/Columns" instance=ExtResource( 2 )]
-margin_left = 512.0
-margin_right = 921.0
+[node name="EnemyHealthBar" parent="Rows/Columns" instance=ExtResource( 3 )]
+margin_left = 519.0
+margin_right = 883.0
+margin_bottom = 33.0
 
 [node name="EnemyLabel" type="Label" parent="Rows/Columns"]
-margin_left = 941.0
-margin_right = 984.0
-margin_bottom = 14.0
+margin_left = 903.0
+margin_right = 983.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
 text = "Enemy"
