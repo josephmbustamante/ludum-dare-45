@@ -48,15 +48,14 @@ func _process(delta: float) -> void:
 			# if we are to the left of the player, set the desired position to be to their left and face right
 			if distance_to_target.x > 0:
 				position_to_occupy = Vector2(target.global_position.x - 20, target.global_position.y)
-				if facing_left:
-					scale.x *= -1
-					facing_left = false
+				if facing_left && !$Weapon.is_attacking():
+					change_direction()
+
 			# if we are to the right of the player, set the desired position to be to their right and face left
 			else:
 				position_to_occupy = Vector2(target.global_position.x + 20, target.global_position.y)
-				if !facing_left:
-					scale.x *= -1
-					facing_left = true
+				if !facing_left && !$Weapon.is_attacking():
+					change_direction()
 
 			# only keep moving if we haven't reached the target yet
 			if (position_to_occupy - global_position).length() > 10:
@@ -74,6 +73,10 @@ func _process(delta: float) -> void:
 		$AnimatedSprite.play("idle")
 
 	move_and_slide(velocity)
+
+func change_direction():
+	facing_left = !facing_left
+	scale.x *= -1
 
 func handle_hit(damage: int):
 	if enemy_defeated:

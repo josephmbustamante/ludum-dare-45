@@ -47,6 +47,9 @@ func enable_critical_hit():
 func disable_critical_hit():
 	critical_hit = 1.0
 
+func is_attacking() -> bool:
+	return $WeaponSprite/AnimationPlayer.is_playing()
+
 func attack():
 	if unarmed:
 		$WeaponSprite/AnimationPlayer.play("Punch")
