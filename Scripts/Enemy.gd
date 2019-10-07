@@ -26,6 +26,7 @@ var facing_left: bool = false
 var enemy_defeated: bool = false
 
 signal enemy_health_changed(new_health)
+signal enemy_defeated
 
 func _ready() -> void:
 	$Weapon.set_group_to_attack("player")
@@ -92,10 +93,14 @@ func handle_hit(damage: int):
 
 	$AnimationPlayer.play("HitAnimation")
 	emit_signal("enemy_health_changed", health_lost)
+
+	# health is the health for all enemies, so this will only
+	# get hit if every enemy is dead
 	if health <= 0:
-		enemy_defeated = true
 		$CollisionShape2D.disabled = true
 		$Weapon.hide()
 		$AnimatedSprite.rotation = -90
 		$AnimatedSprite.playing = false
+		enemy_defeated = true
+		emit_signal("enemy_defeated")
 

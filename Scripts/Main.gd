@@ -19,6 +19,7 @@ func _ready() -> void:
 		enemy.position = Vector2(x, y)
 		health += enemy.health
 		enemy.connect("enemy_health_changed", ui, "handle_enemy_health_changed")
+		enemy.connect("enemy_defeated", self, "handle_enemy_defeated")
 		enemies.push_back(enemy)
 
 	ui.initialize_enemy_health(health)
@@ -41,17 +42,26 @@ func _ready() -> void:
 	if !Global.music_player.playing:
 		Global.music_player.play()
 
-func _process(delta: float) -> void:
-	if Global.enemy_defeated:
-		$VictoryPanel.show()
+func handle_enemy_defeated():
+	$VictoryPanel.show()
+
+func handle_player_defeated():
+	$DefeatPanel.show()
 
 func _on_VictoryButton_pressed():
 	$VictoryPanel.hide()
-	Global.enemy_defeated = false
 	Global.current_stage += 1
-	# if enemy.is_final_boss:
-	#	go to final victory screen
-	Global.goto_scene("res://Scenes/LevelUp.tscn")
+	if enemies[0].is_final_boss:
+		Global.goto_scene("res://Scenes/FinalVictoryScene.tscn")
+	else:
+		Global.goto_scene("res://Scenes/LevelUp.tscn")
+	queue_free()
+
+func _on_DefeatPanel_defeat_button_pressed() -> void:
+	$DefeatPanel.hide()
+	Global.current_stage = 0
+	Global.player_died()
+	Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")
 	queue_free()
 
 func start_battle():

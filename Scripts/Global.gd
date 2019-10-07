@@ -75,8 +75,6 @@ var stages = [
 	{ "enemy": load("res://Scenes/Enemies/Wizard.tscn"), "count": 1 },
 ]
 
-var enemy_defeated = false
-
 var current_stage = 0
 var music_player: AudioStreamPlayer
 
@@ -120,7 +118,6 @@ func _deferred_goto_scene(path):
 
 func reset_global_state():
 	current_stage = 0
-	enemy_defeated = false
 
 func player_died():
 	PlayerVariables.deathCount += 1

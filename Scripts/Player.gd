@@ -24,6 +24,7 @@ var facing_left: bool = false
 
 signal player_health_changed(new_health)
 signal player_stamina_changed(new_stamina)
+signal player_defeated
 
 func has_weapon():
 	return PlayerVariables.weapon != Global.WEAPON.unarmed
@@ -111,7 +112,8 @@ func handle_hit(damage: int):
 		$Weapon.hide()
 		$AnimatedSprite.rotation = -90
 		$AnimatedSprite.playing = false
-		$DeathTimer.start()
+		emit_signal("player_defeated")
+
 
 func finish_death_transition():
 	Global.current_stage = 0

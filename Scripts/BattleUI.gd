@@ -24,6 +24,3 @@ func handle_player_health_changed(new_health: int):
 func handle_enemy_health_changed(health_lost: int):
 	enemy_health -= health_lost
 	enemy_health_bar.change_health_bar_value(enemy_health)
-	if enemy_health <= 0:
-		Global.enemy_defeated = true
-
