@@ -26,10 +26,17 @@ signal player_health_changed(new_health)
 signal player_stamina_changed(new_stamina)
 signal player_defeated
 
+var dash_sound = load("res://Assets/Sounds/dash.wav")
+var dodge_sound = load("res://Assets/Sounds/dodge.wav")
+var death_sound = load("res://Assets/Sounds/death.wav")
+var audio_player: AudioStreamPlayer = null
+
 func has_weapon():
 	return PlayerVariables.weapon != Global.WEAPON.unarmed
 
 func _ready() -> void:
+	audio_player = AudioStreamPlayer.new()
+	self.add_child(audio_player)
 	$Weapon.set_group_to_attack("enemy")
 	$Weapon.set_weapon(PlayerVariables.weapon, strength)
 	if PlayerVariables.weapon == Global.WEAPON.unarmed:
@@ -88,6 +95,8 @@ func _process(delta: float) -> void:
 			$DashCooldown.start()
 			$DashEffect.start()
 			$Weapon.enable_critical_hit()
+			audio_player.stream = dash_sound
+			audio_player.play()
 
 		if Input.is_action_just_pressed("attack") && $AttackCooldown.is_stopped() && stamina >= attack_stamina_cost:
 			update_stamina(-attack_stamina_cost)
@@ -99,6 +108,8 @@ func _process(delta: float) -> void:
 			$AnimationPlayer.play("RollAnimation")
 			$RollCooldown.start()
 			$RollEffect.start()
+			audio_player.stream = dodge_sound
+			audio_player.play()
 
 		move_and_slide(velocity)
 
@@ -107,6 +118,8 @@ func handle_hit(damage: int):
 	$AnimationPlayer.play("HitAnimation")
 
 	if health <= 0:
+		audio_player.stream = death_sound
+		audio_player.play()
 		defeated = true
 		input_enabled = false
 		$Weapon.hide()

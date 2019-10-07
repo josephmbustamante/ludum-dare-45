@@ -1,25 +1,28 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/VictoryPanel.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Retron2000Title.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Resources/Retron2000Body.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/Sounds/victory.wav" type="AudioStream" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.215686, 0.156863, 0.0941176, 1 )
 
 [node name="VictoryPanel" type="PanelContainer"]
 margin_right = 199.555
 margin_bottom = 150.222
 theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Rows" type="VBoxContainer" parent="."]
-margin_left = 12.4444
-margin_top = 10.6667
-margin_right = 188.444
-margin_bottom = 148.667
+margin_right = 199.555
+margin_bottom = 150.222
 custom_constants/separation = 50
 
 [node name="VictoryMessage" type="Label" parent="Rows"]
-margin_right = 176.0
+margin_right = 199.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 3 )
 text = "Victory!"
@@ -29,11 +32,15 @@ uppercase = true
 
 [node name="VictoryButton" type="Button" parent="Rows"]
 margin_top = 98.0
-margin_right = 176.0
+margin_right = 199.0
 margin_bottom = 138.0
 rect_min_size = Vector2( 0, 40 )
 mouse_default_cursor_shape = 2
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "Onward!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+[connection signal="visibility_changed" from="." to="AudioStreamPlayer" method="play"]
 [connection signal="pressed" from="Rows/VictoryButton" to="." method="_on_VictoryButton_pressed"]
