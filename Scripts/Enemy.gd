@@ -20,7 +20,7 @@ export (bool) var is_final_boss = false
 var target: PhysicsBody2D = null
 
 var facing_left: bool = false
-var enemy_defeated: bool = false
+export var enemy_defeated: bool = false
 
 signal enemy_health_changed(new_health)
 

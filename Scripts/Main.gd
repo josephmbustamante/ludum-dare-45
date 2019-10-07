@@ -63,7 +63,9 @@ func start_battle():
 				$EnemyBanterBox.set_text(enemies[0].banter_texts[1])
 				$EnemyBanterBox.show()
 				return
-			# TODO show weapon death animation
-			player.handle_hit(10000000)
+			enemy.enemy_defeated = true # TODO find a better way to lock the wizard from moving
+			player.show_execution()
+		else:
+			player.input_enabled = true
 		enemy.set_target(player)
-	player.input_enabled = true
+	
