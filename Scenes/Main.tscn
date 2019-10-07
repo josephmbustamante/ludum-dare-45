@@ -30,32 +30,34 @@ tile_data = PoolIntArray( 0, 1, 2, 1, 1, 196612, 2, 1, 196612, 3, 1, 196612, 4, 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 90, 270 )
 
-[node name="BattleUI" parent="." instance=ExtResource( 4 )]
-margin_right = 1025.0
-margin_bottom = 610.0
+[node name="GUI" type="Node2D" parent="."]
+position = Vector2( 320, 335 )
+z_index = 5
 
-[node name="VictoryPanel" parent="." instance=ExtResource( 5 )]
+[node name="BattleUI" parent="GUI" instance=ExtResource( 4 )]
+margin_left = -320.0
+margin_top = -335.0
+margin_right = 705.0
+margin_bottom = 275.0
+
+[node name="VictoryPanel" parent="GUI" instance=ExtResource( 5 )]
 visible = false
-margin_left = 430.0
-margin_top = 109.0
-margin_right = 629.555
-margin_bottom = 259.222
+margin_left = 110.0
+margin_top = -226.0
+margin_right = 309.555
+margin_bottom = -75.778
 
-[node name="DefeatPanel" parent="." instance=ExtResource( 6 )]
+[node name="DefeatPanel" parent="GUI" instance=ExtResource( 6 )]
 visible = false
-margin_left = 430.0
-margin_top = 109.0
-margin_right = 678.555
-margin_bottom = 269.222
+margin_left = 110.0
+margin_top = -226.0
+margin_right = 358.555
+margin_bottom = -65.778
 
-[node name="EnemyBanterBox" parent="." instance=ExtResource( 7 )]
-margin_left = 320.0
-margin_top = 335.0
-margin_right = 720.0
-margin_bottom = 535.0
+[node name="EnemyBanterBox" parent="GUI" instance=ExtResource( 7 )]
 [connection signal="player_defeated" from="Player" to="." method="handle_player_defeated"]
-[connection signal="player_health_changed" from="Player" to="BattleUI" method="handle_player_health_changed"]
-[connection signal="player_stamina_changed" from="Player" to="BattleUI" method="handle_player_stamina_changed"]
-[connection signal="victory_button_pressed" from="VictoryPanel" to="." method="_on_VictoryButton_pressed"]
-[connection signal="defeat_button_pressed" from="DefeatPanel" to="." method="_on_DefeatPanel_defeat_button_pressed"]
-[connection signal="banter_box_fight_clicked" from="EnemyBanterBox" to="." method="start_battle"]
+[connection signal="player_health_changed" from="Player" to="GUI/BattleUI" method="handle_player_health_changed"]
+[connection signal="player_stamina_changed" from="Player" to="GUI/BattleUI" method="handle_player_stamina_changed"]
+[connection signal="victory_button_pressed" from="GUI/VictoryPanel" to="." method="_on_VictoryButton_pressed"]
+[connection signal="defeat_button_pressed" from="GUI/DefeatPanel" to="." method="_on_DefeatPanel_defeat_button_pressed"]
+[connection signal="banter_box_fight_clicked" from="GUI/EnemyBanterBox" to="." method="start_battle"]

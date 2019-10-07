@@ -4,7 +4,7 @@ onready var player = $Player
 onready var enemies = []
 var total_enemy_health = 0
 
-onready var ui = $BattleUI
+onready var ui = $GUI/BattleUI
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,16 +27,16 @@ func _ready() -> void:
 	ui.initialize_player_stamina(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["current_value"])
 
 	if enemies[0].is_final_boss && player.has_weapon():
-		$EnemyBanterBox.set_text(enemies[0].banter_texts[0])
-		$EnemyBanterBox.show()
+		$GUI/EnemyBanterBox.set_text(enemies[0].banter_texts[0])
+		$GUI/EnemyBanterBox.show()
 	elif enemies[0].is_final_boss && !player.has_weapon():
-		$EnemyBanterBox.set_text(enemies[0].banter_texts[2])
-		$EnemyBanterBox.show()
+		$GUI/EnemyBanterBox.set_text(enemies[0].banter_texts[2])
+		$GUI/EnemyBanterBox.show()
 	elif enemies[0].banter_texts.size() > 0:
-		$EnemyBanterBox.set_text(enemies[0].banter_texts[randi() % enemies[0].banter_texts.size()])
-		$EnemyBanterBox.show()
+		$GUI/EnemyBanterBox.set_text(enemies[0].banter_texts[randi() % enemies[0].banter_texts.size()])
+		$GUI/EnemyBanterBox.show()
 	else:
-		$EnemyBanterBox.hide()
+		$GUI/EnemyBanterBox.hide()
 		start_battle()
 
 	if !Global.music_player.playing:
@@ -45,13 +45,13 @@ func _ready() -> void:
 func handle_enemy_defeated(health_change):
 	total_enemy_health -= health_change
 	if total_enemy_health <= 0:
-		$VictoryPanel.show()
+		$GUI/VictoryPanel.show()
 
 func handle_player_defeated():
-	$DefeatPanel.show()
+	$GUI/DefeatPanel.show()
 
 func _on_VictoryButton_pressed():
-	$VictoryPanel.hide()
+	$GUI/VictoryPanel.hide()
 	Global.current_stage += 1
 	if enemies[0].is_final_boss:
 		Global.goto_scene("res://Scenes/FinalVictoryScreen.tscn")
@@ -60,20 +60,20 @@ func _on_VictoryButton_pressed():
 	queue_free()
 
 func _on_DefeatPanel_defeat_button_pressed() -> void:
-	$DefeatPanel.hide()
+	$GUI/DefeatPanel.hide()
 	Global.current_stage = 0
 	Global.player_died()
 	Global.goto_scene("res://Scenes/WeaponPickerScreen.tscn")
 	queue_free()
 
 func start_battle():
-	$EnemyBanterBox.hide()
+	$GUI/EnemyBanterBox.hide()
 	for enemy in enemies:
 		if enemy.is_final_boss && player.has_weapon():
 			if !PlayerVariables.unarmedStyleEnabled:
 				PlayerVariables.unarmedStyleEnabled = true
-				$EnemyBanterBox.set_text(enemies[0].banter_texts[1])
-				$EnemyBanterBox.show()
+				$GUI/terBox.set_text(enemies[0].banter_texts[1])
+				$GUI/EnemyBanterBox.show()
 				return
 			enemy.enemy_defeated = true # TODO find a better way to lock the wizard from moving
 			player.show_execution()

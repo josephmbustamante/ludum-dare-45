@@ -92,7 +92,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("attack") && $AttackCooldown.is_stopped() && stamina >= attack_stamina_cost:
 			update_stamina(-attack_stamina_cost)
 			$Weapon.attack()
-			$AttackCooldown.start(0.5)
+			$AttackCooldown.start(0.5 / Global.weapon_config[PlayerVariables.weapon]["speed"])
 
 		if Input.is_action_just_pressed("dodge") && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped() && stamina >= dodge_stamina_cost:
 			update_stamina(-dodge_stamina_cost)

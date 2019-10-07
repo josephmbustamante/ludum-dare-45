@@ -49,11 +49,11 @@ var weapon_config = {
 		"restricted": false
 	},
 	WEAPON.unarmed: {
-		"speed": 0.25,
-		"sprite": preload("res://Assets/Sprites/coin_anim_f0.png"),
-		"damage": 10,
-		"reach": 1,
-		"sound": "slash",
+		"speed": 1,
+		"sprite": preload("res://Assets/Sprites/weapon_fist.png"),
+		"damage": 25,
+		"reach": 10,
+		"sound": "bludgeon",
 		"name": "Start with Nothing",
 		"restricted": true
 	},
