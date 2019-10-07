@@ -11,8 +11,11 @@ enum MY_BS_DUPLICATE_WEAPON {
 
 export (int) var health = 100
 export (int) var speed = 50
-export (int) var hit_radius = 30
 export (int) var strength = 2
+
+export (int) var attack_radius = 30 # how close the enemy needs to be to attack
+export (int) var proximity_radius = 20 # how close the enemy should try to get to the player
+
 export (Array) var banter_texts = []
 export (MY_BS_DUPLICATE_WEAPON) var weapon_type
 export (bool) var is_final_boss = false
@@ -47,13 +50,13 @@ func _process(delta: float) -> void:
 			var position_to_occupy
 			# if we are to the left of the player, set the desired position to be to their left and face right
 			if distance_to_target.x > 0:
-				position_to_occupy = Vector2(target.global_position.x - 20, target.global_position.y)
+				position_to_occupy = Vector2(target.global_position.x - proximity_radius, target.global_position.y)
 				if facing_left && !$Weapon.is_attacking():
 					change_direction()
 
 			# if we are to the right of the player, set the desired position to be to their right and face left
 			else:
-				position_to_occupy = Vector2(target.global_position.x + 20, target.global_position.y)
+				position_to_occupy = Vector2(target.global_position.x + proximity_radius, target.global_position.y)
 				if !facing_left && !$Weapon.is_attacking():
 					change_direction()
 
@@ -62,7 +65,7 @@ func _process(delta: float) -> void:
 				velocity = position_to_occupy - global_position
 
 			# if we're close enough to the player, attack, even if we still need to keep moving a bit
-			if distance_to_target.length() < hit_radius && $AttackCooldown.is_stopped():
+			if distance_to_target.length() < attack_radius && $AttackCooldown.is_stopped():
 				$Weapon.attack()
 				$AttackCooldown.start()
 
