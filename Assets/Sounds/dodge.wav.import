@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dodge.wav-189e65d5e19ed722847593fe1a475b27.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/dodge.wav"
+dest_files=[ "res://.import/dodge.wav-189e65d5e19ed722847593fe1a475b27.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
