@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/elf_m_idle_anim_f0.png" type="Texture" id=2]
@@ -19,14 +19,14 @@ animations = [ {
 "name": "idle",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "hit",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "run",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "hit",
 "speed": 12.0
 } ]
 
@@ -66,6 +66,34 @@ tracks/0/keys = {
 "values": [ 0.0, 180.0, 360.0 ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "execution"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 10 ), Vector2( 200, 10 ), Vector2( 0, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Weapon:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -90.0, -90.0 ]
+}
+
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
@@ -81,11 +109,13 @@ position = Vector2( 0, 5 )
 shape = SubResource( 2 )
 
 [node name="Weapon" parent="." instance=ExtResource( 10 )]
+position = Vector2( 0, 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/DashAnimation = SubResource( 3 )
 anims/HitAnimation = ExtResource( 11 )
 anims/RollAnimation = SubResource( 4 )
+anims/execution = SubResource( 5 )
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.5
@@ -104,3 +134,4 @@ one_shot = true
 [node name="RollEffect" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

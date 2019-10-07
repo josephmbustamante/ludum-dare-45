@@ -129,4 +129,11 @@ func update_stamina(stamina_change: float):
 	stamina += stamina_change * 1.0
 	emit_signal("player_stamina_changed", stamina)
 
+func show_execution():
+	input_enabled = false
+	$AnimationPlayer.play("execution")
 
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "execution":
+		handle_hit(10000000)
