@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ludum-dare-45"
+config/name="Dead Again"
 run/main_scene="res://Scenes/WeaponPickerScreen.tscn"
 config/icon="res://icon.png"
 
