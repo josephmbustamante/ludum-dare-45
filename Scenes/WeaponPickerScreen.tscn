@@ -9,6 +9,7 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 12.4444
@@ -19,7 +20,6 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
-script = ExtResource( 2 )
 
 [node name="Rows" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 20.0
@@ -93,4 +93,4 @@ rect_min_size = Vector2( 200, 40 )
 mouse_default_cursor_shape = 2
 disabled = true
 text = "Start!"
-[connection signal="pressed" from="MarginContainer/Rows/CenterContainer/Button" to="MarginContainer" method="_on_Start_Button_pressed"]
+[connection signal="pressed" from="MarginContainer/Rows/CenterContainer/Button" to="." method="_on_Start_Button_pressed"]

@@ -1,11 +1,10 @@
-extends MarginContainer
+extends PanelContainer
 
 var weapon_select = preload("res://Scenes/WeaponSelect.tscn")
 var selects: Dictionary
 var selected_weapon_id
 
-onready var startButton = $Rows/CenterContainer/Button
-
+onready var startButton = $MarginContainer/Rows/CenterContainer/Button
 
 func _ready():
 	for weapon in Global.WEAPON:
@@ -19,9 +18,9 @@ func _ready():
 
 	# This line has no text / is invisible until the player dies once
 	if (PlayerVariables.deathCount > 0):
-		$Rows/DeathCountText.text = str("YOU HAVE DIED ", PlayerVariables.deathCount, " TIMES")
+		$MarginContainer/Rows/DeathCountText.text = str("YOU HAVE DIED ", PlayerVariables.deathCount, " TIMES")
 	else:
-		$Rows/DeathCountText.text = ""
+		$MarginContainer/Rows/DeathCountText.text = ""
 
 func _process(delta: float) -> void:
 	# don't allow starting the game if we have no selected weapon
@@ -30,7 +29,7 @@ func _process(delta: float) -> void:
 func create_weapon_select(weapon_id: int, sprite, name: String, damage: int, speed: int):
 	# create a weapon select for each weapon and add it to the weapon select section
 	var select = weapon_select.instance()
-	$Rows/WeaponColumns.add_child(select)
+	$MarginContainer/Rows/WeaponColumns.add_child(select)
 	select.initialize(weapon_id, sprite, name, damage, speed)
 	# send a message that the weapon has been selected
 	select.connect("weapon_selected", self, "weapon_menu_selection_made")
