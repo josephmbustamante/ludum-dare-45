@@ -5,6 +5,7 @@ export (int) var strength_multiplier = 5 # each point of strength adds this much
 
 export (int) var base_speed = 1
 export (int) var base_reach = 1
+export (float) var damage_multiplier = 1
 
 var base_x_offset: int = 20
 var sounds
@@ -38,7 +39,7 @@ func set_weapon(weapon_id: int, strength: int):
 	$WeaponSprite.texture = w["sprite"]
 	# For now, just implementing reach by x-shifting the hit box
 	$WeaponHitBox/CollisionShape2D.position.x = base_x_offset + w["reach"]
-	damage = w["damage"] + (strength * strength_multiplier)
+	damage = (w["damage"] + (strength * strength_multiplier))*damage_multiplier
 	sounds = sounds_config[w["sound"]]
 
 func enable_critical_hit():
