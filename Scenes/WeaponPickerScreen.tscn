@@ -1,21 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/WeaponPickerScreen.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Retron2000Title.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Resources/Retron2000Body.tres" type="DynamicFont" id=4]
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.215686, 0.156863, 0.0941176, 1 )
+
 [node name="WeaponPickerScreen" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 12.4444
-margin_top = 10.6667
-margin_right = 1012.89
-margin_bottom = 605.667
+margin_right = 1024.0
+margin_bottom = 600.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -24,12 +26,12 @@ custom_constants/margin_bottom = 20
 [node name="Rows" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 980.0
-margin_bottom = 575.0
+margin_right = 1004.0
+margin_bottom = 580.0
 custom_constants/separation = 20
 
 [node name="GameTitle" type="Label" parent="MarginContainer/Rows"]
-margin_right = 960.0
+margin_right = 984.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 3 )
 text = "NAME OF OUR GAME"
@@ -37,7 +39,7 @@ align = 1
 
 [node name="Paragraph1" type="Label" parent="MarginContainer/Rows"]
 margin_top = 68.0
-margin_right = 960.0
+margin_right = 984.0
 margin_bottom = 131.0
 rect_min_size = Vector2( 600, 40 )
 custom_fonts/font = ExtResource( 4 )
@@ -47,7 +49,7 @@ autowrap = true
 
 [node name="Paragraph2" type="Label" parent="MarginContainer/Rows"]
 margin_top = 151.0
-margin_right = 960.0
+margin_right = 984.0
 margin_bottom = 191.0
 rect_min_size = Vector2( 600, 40 )
 custom_fonts/font = ExtResource( 4 )
@@ -57,7 +59,7 @@ autowrap = true
 
 [node name="DeathCountText" type="Label" parent="MarginContainer/Rows"]
 margin_top = 211.0
-margin_right = 960.0
+margin_right = 984.0
 margin_bottom = 251.0
 rect_min_size = Vector2( 600, 40 )
 custom_fonts/font = ExtResource( 4 )
@@ -68,7 +70,7 @@ uppercase = true
 
 [node name="WeaponColumns" type="HBoxContainer" parent="MarginContainer/Rows"]
 margin_top = 271.0
-margin_right = 960.0
+margin_right = 984.0
 margin_bottom = 471.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_horizontal = 3
@@ -77,17 +79,17 @@ alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Rows"]
 margin_top = 491.0
-margin_right = 960.0
+margin_right = 984.0
 margin_bottom = 495.0
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Rows"]
 margin_top = 515.0
-margin_right = 960.0
+margin_right = 984.0
 margin_bottom = 555.0
 
 [node name="Button" type="Button" parent="MarginContainer/Rows/CenterContainer"]
-margin_left = 380.0
-margin_right = 580.0
+margin_left = 392.0
+margin_right = 592.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 200, 40 )
 mouse_default_cursor_shape = 2
