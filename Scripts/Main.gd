@@ -72,7 +72,7 @@ func start_battle():
 		if enemy.is_final_boss && player.has_weapon():
 			if !PlayerVariables.unarmedStyleEnabled:
 				PlayerVariables.unarmedStyleEnabled = true
-				$GUI/terBox.set_text(enemies[0].banter_texts[1])
+				$GUI/EnemyBanterBox.set_text(enemies[0].banter_texts[1])
 				$GUI/EnemyBanterBox.show()
 				return
 			enemy.enemy_defeated = true # TODO find a better way to lock the wizard from moving
