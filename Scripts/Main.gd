@@ -2,6 +2,7 @@ extends Node2D
 
 onready var player = $Player
 onready var enemies = []
+var total_enemy_health = 0
 
 onready var ui = $BattleUI
 
@@ -10,19 +11,18 @@ func _ready() -> void:
 	player.input_enabled = false
 
 	var stage = Global.stages[Global.current_stage]
-	var health = 0
 	for i in range(stage.count):
 		var enemy = stage.enemy.instance()
 		add_child(enemy)
 		var x = rand_range(450, 900)
 		var y = rand_range(200, 500)
 		enemy.position = Vector2(x, y)
-		health += enemy.health
+		total_enemy_health += enemy.health
 		enemy.connect("enemy_health_changed", ui, "handle_enemy_health_changed")
-		enemy.connect("enemy_defeated", self, "handle_enemy_defeated")
+		enemy.connect("enemy_health_changed", self, "handle_enemy_defeated")
 		enemies.push_back(enemy)
 
-	ui.initialize_enemy_health(health)
+	ui.initialize_enemy_health(total_enemy_health)
 	ui.initialize_player_health(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health]["current_value"])
 	ui.initialize_player_stamina(PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["current_value"])
 
@@ -42,8 +42,10 @@ func _ready() -> void:
 	if !Global.music_player.playing:
 		Global.music_player.play()
 
-func handle_enemy_defeated():
-	$VictoryPanel.show()
+func handle_enemy_defeated(health_change):
+	total_enemy_health -= health_change
+	if total_enemy_health <= 0:
+		$VictoryPanel.show()
 
 func handle_player_defeated():
 	$DefeatPanel.show()

@@ -26,7 +26,6 @@ var facing_left: bool = false
 export var enemy_defeated: bool = false
 
 signal enemy_health_changed(new_health)
-signal enemy_defeated
 
 func _ready() -> void:
 	$Weapon.set_group_to_attack("player")
@@ -102,5 +101,4 @@ func handle_hit(damage: int):
 		$AnimatedSprite.rotation = -90
 		$AnimatedSprite.playing = false
 		enemy_defeated = true
-		emit_signal("enemy_defeated")
 
