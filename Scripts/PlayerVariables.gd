@@ -11,25 +11,25 @@ var stats = {
 	PLAYER_STATS.health: {
 		"start_value": 100,
 		"current_value": 100,
-		"max_value": 300,
+		"max_value": 500,
 		"increment": 20,
 	},
 	PLAYER_STATS.strength: {
 		"start_value": 1,
 		"current_value": 1,
-		"max_value": 10,
+		"max_value": 20,
 		"increment": 1,
 	},
 	PLAYER_STATS.stamina: {
 		"start_value": 100.0,
 		"current_value": 100.0,
-		"max_value": 200.0,
+		"max_value": 300.0,
 		"increment": 10.0,
 	},
 	PLAYER_STATS.speed: {
 		"start_value": 1,
 		"current_value": 1,
-		"max_value": 10,
+		"max_value": 20,
 		"increment": 1,
 	}
 }
