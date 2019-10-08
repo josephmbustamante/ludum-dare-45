@@ -96,9 +96,15 @@ func handle_hit(damage: int):
 	# health is the health for all enemies, so this will only
 	# get hit if every enemy is dead
 	if health <= 0:
+		die()
+
+func die():
 		$CollisionShape2D.disabled = true
+		collision_layer = 0
+		collision_mask = 0
+		z_index = -1
 		$Weapon.hide()
 		$AnimatedSprite.rotation = -90
 		$AnimatedSprite.playing = false
+		modulate = Color.darkgray
 		enemy_defeated = true
-
