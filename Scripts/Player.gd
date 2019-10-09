@@ -4,6 +4,8 @@ onready var health = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.health][
 onready var strength = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.strength]["current_value"]
 onready var speed = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.speed]["current_value"]
 onready var stamina = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["current_value"]
+# Use a separate variable so we know what to build back up to
+onready var starting_stamina = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["current_value"]
 
 # Player stats go betwen 1-20, and if we used that as a speed they would be frustratingly slow.
 # Instead, we keep the 1-20 scale, and just have a multiplier here
@@ -48,7 +50,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if defeated:
 		return
-	if stamina < PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["start_value"]:
+	if stamina < starting_stamina:
 		if stamina_regen >= 1.0:
 			update_stamina(stamina_regen)
 			stamina_regen = 0
