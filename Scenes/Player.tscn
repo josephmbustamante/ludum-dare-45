@@ -111,9 +111,11 @@ shape = SubResource( 2 )
 [node name="Weapon" parent="." instance=ExtResource( 10 )]
 position = Vector2( 0, 5 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DashAnimation = SubResource( 3 )
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/HitAnimation = ExtResource( 11 )
+
+[node name="MovementAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DashAnimation = SubResource( 3 )
 anims/RollAnimation = SubResource( 4 )
 anims/execution = SubResource( 5 )
 
@@ -134,4 +136,4 @@ one_shot = true
 [node name="RollEffect" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="MovementAnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

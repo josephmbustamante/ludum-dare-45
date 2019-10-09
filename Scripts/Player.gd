@@ -93,7 +93,7 @@ func _process(delta: float) -> void:
 
 		if Input.is_action_just_pressed("dash")  && $DashCooldown.is_stopped() && stamina >= dash_stamina_cost:
 			update_stamina(-dash_stamina_cost)
-			$AnimationPlayer.play("DashAnimation")
+			$MovementAnimationPlayer.play("DashAnimation")
 			$DashCooldown.start()
 			$DashEffect.start()
 			$Weapon.enable_critical_hit()
@@ -107,7 +107,7 @@ func _process(delta: float) -> void:
 
 		if Input.is_action_just_pressed("dodge") && $RollCooldown.is_stopped() && $AttackCooldown.is_stopped() && stamina >= dodge_stamina_cost:
 			update_stamina(-dodge_stamina_cost)
-			$AnimationPlayer.play("RollAnimation")
+			$MovementAnimationPlayer.play("RollAnimation")
 			$RollCooldown.start()
 			$RollEffect.start()
 			audio_player.stream = dodge_sound
@@ -117,7 +117,7 @@ func _process(delta: float) -> void:
 
 func handle_hit(damage: int):
 	update_health(damage)
-	$AnimationPlayer.play("HitAnimation")
+	$HitAnimationPlayer.play("HitAnimation")
 
 	if health <= 0:
 		die()
@@ -142,7 +142,7 @@ func level_up():
 
 func show_execution():
 	input_enabled = false
-	$AnimationPlayer.play("execution")
+	$MovementAnimationPlayer.play("execution")
 
 func die():
 	audio_player.stream = death_sound
