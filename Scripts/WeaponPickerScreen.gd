@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	# don't allow starting the game if we have no selected weapon
 	startButton.disabled = selected_weapon_id == null
 
-func create_weapon_select(weapon_id: int, sprite, name: String, damage: int, speed: int):
+func create_weapon_select(weapon_id: int, sprite, name: String, damage: int, speed: float):
 	# create a weapon select for each weapon and add it to the weapon select section
 	var select = weapon_select.instance()
 	$MarginContainer/Rows/WeaponColumns.add_child(select)

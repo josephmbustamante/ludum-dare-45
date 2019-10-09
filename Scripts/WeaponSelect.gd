@@ -10,12 +10,12 @@ var selected: bool = false
 
 signal weapon_selected(weapon_id)
 
-func initialize(weapon_id: int, sprite, name: String, damage: int, speed: int):
+func initialize(weapon_id: int, sprite, name: String, damage: int, speed: float):
 	self.weapon_id = weapon_id
 	$MarginContainer/Rows/WeaponSprite.texture = sprite
 	$MarginContainer/Rows/WeaponName.text = name
 	$MarginContainer/Rows/DamageRow/DamageValue.text = str(damage)
-	$MarginContainer/Rows/SpeedRow/SpeedValue.text = str(speed)
+	$MarginContainer/Rows/SpeedRow/SpeedValue.text = str(speed * 10.0) # speed is a multipler -- less than 1 is slower, more than 1 is faster
 	set_background_color(default_background)
 
 func unselect():
