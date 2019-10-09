@@ -33,7 +33,7 @@ extents = Vector2( 10, 15 )
 ]]
 position = Vector2( 805, 255 )
 script = ExtResource( 1 )
-health = 125
+health = 150
 strength = 3
 banter_texts = [ "Brainzzzz...", "Narghmm... B R A I N Z!" ]
 
