@@ -49,6 +49,8 @@ func reset_stats():
 	for stat in stats:
 		stats[stat]["current_value"] = stats[stat]["start_value"]
 	deathCount = 0
+	unarmedStyleEnabled = false
+	skill_points_remaining = 0
 
 var unarmedStyleEnabled: bool = false
 
