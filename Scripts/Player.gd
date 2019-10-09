@@ -152,6 +152,7 @@ func die():
 	$Weapon.hide()
 	$AnimatedSprite.rotation = -90
 	$AnimatedSprite.playing = false
+	$AnimatedSprite.modulate = Color(0.6, 0.4, 0.4)
 	emit_signal("player_defeated")
 
 func _on_AnimationPlayer_animation_finished(anim_name):

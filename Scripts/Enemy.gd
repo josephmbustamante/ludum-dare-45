@@ -106,5 +106,5 @@ func die():
 		$Weapon.hide()
 		$AnimatedSprite.rotation = -90
 		$AnimatedSprite.playing = false
-		modulate = Color.darkgray
+		$AnimatedSprite.modulate = Color(0.6, 0.4, 0.4)
 		enemy_defeated = true
