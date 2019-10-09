@@ -5,16 +5,16 @@ onready var strength = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.streng
 onready var speed = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.speed]["current_value"]
 onready var stamina = PlayerVariables.stats[PlayerVariables.PLAYER_STATS.stamina]["current_value"]
 
-# Player stats go betwen 1-10, and if we used that as a speed they would be frustratingly slow.
-# Instead, we keep the 1-10 scale, and just have a multiplier here
-export (int) var speed_multiplier = 10
+# Player stats go betwen 1-20, and if we used that as a speed they would be frustratingly slow.
+# Instead, we keep the 1-20 scale, and just have a multiplier here
+export (int) var speed_multiplier = 5
 export (int) var base_speed = 75
 export (bool) var input_enabled = true;
 var defeated = false;
 
-export (int) var attack_stamina_cost = 10.0
-export (int) var dash_stamina_cost = 20.0
-export (int) var dodge_stamina_cost = 20.0
+export (int) var attack_stamina_cost = 15.0
+export (int) var dash_stamina_cost = 25.0
+export (int) var dodge_stamina_cost = 25.0
 export (int) var stamina_per_second = 10.0
 export (float) var stamina_regen = 0
 
@@ -118,14 +118,7 @@ func handle_hit(damage: int):
 	$AnimationPlayer.play("HitAnimation")
 
 	if health <= 0:
-		audio_player.stream = death_sound
-		audio_player.play()
-		defeated = true
-		input_enabled = false
-		$Weapon.hide()
-		$AnimatedSprite.rotation = -90
-		$AnimatedSprite.playing = false
-		emit_signal("player_defeated")
+		die()
 
 
 func finish_death_transition():
@@ -142,10 +135,22 @@ func update_stamina(stamina_change: float):
 	stamina += stamina_change * 1.0
 	emit_signal("player_stamina_changed", stamina)
 
+func level_up():
+	PlayerVariables.skill_points_remaining += 5
+
 func show_execution():
 	input_enabled = false
 	$AnimationPlayer.play("execution")
 
+func die():
+	audio_player.stream = death_sound
+	audio_player.play()
+	defeated = true
+	input_enabled = false
+	$Weapon.hide()
+	$AnimatedSprite.rotation = -90
+	$AnimatedSprite.playing = false
+	emit_signal("player_defeated")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "execution":

@@ -53,6 +53,7 @@ func handle_player_defeated():
 func _on_VictoryButton_pressed():
 	$GUI/VictoryPanel.hide()
 	Global.current_stage += 1
+	player.level_up()
 	if enemies[0].is_final_boss:
 		Global.goto_scene("res://Scenes/FinalVictoryScreen.tscn")
 	else:

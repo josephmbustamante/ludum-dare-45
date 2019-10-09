@@ -1,10 +1,9 @@
 extends Node2D
 
 export (int) var damage = 0
-export (int) var strength_multiplier = 5 # each point of strength adds this much damage
+export (int) var strength_multiplier = 2 # each point of strength adds this much damage
 
 export (int) var base_speed = 1
-export (int) var base_reach = 1
 export (float) var damage_multiplier = 1
 
 var base_x_offset: int = 20

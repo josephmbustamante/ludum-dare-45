@@ -67,8 +67,14 @@ margin_right = 900.0
 margin_bottom = 210.0
 fieldName = "Speed"
 
-[node name="HSeparator" type="ColorRect" parent="MarginContainer/Rows"]
+[node name="StaminaLevelUpField2" parent="MarginContainer/Rows" instance=ExtResource( 4 )]
 margin_top = 230.0
+margin_right = 900.0
+margin_bottom = 270.0
+fieldName = "Stamina"
+
+[node name="HSeparator" type="ColorRect" parent="MarginContainer/Rows"]
+margin_top = 290.0
 margin_right = 900.0
 margin_bottom = 417.0
 size_flags_vertical = 3
@@ -94,4 +100,6 @@ text = "Confirm"
 [connection signal="increase_pressed" from="MarginContainer/Rows/HealthLevelUpField" to="MarginContainer" method="_on_HealthLevelUpField_increase_pressed"]
 [connection signal="decrease_pressed" from="MarginContainer/Rows/SpeedLevelUpField" to="MarginContainer" method="_on_SpeedLevelUpField_decrease_pressed"]
 [connection signal="increase_pressed" from="MarginContainer/Rows/SpeedLevelUpField" to="MarginContainer" method="_on_SpeedLevelUpField_increase_pressed"]
+[connection signal="decrease_pressed" from="MarginContainer/Rows/StaminaLevelUpField2" to="MarginContainer" method="_on_SpeedLevelUpField_decrease_pressed"]
+[connection signal="increase_pressed" from="MarginContainer/Rows/StaminaLevelUpField2" to="MarginContainer" method="_on_SpeedLevelUpField_increase_pressed"]
 [connection signal="pressed" from="MarginContainer/Rows/CenterContainer/Confirm" to="MarginContainer" method="_on_Confirm_pressed"]

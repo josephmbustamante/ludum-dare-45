@@ -33,9 +33,9 @@ extents = Vector2( 5, 6 )
 ]]
 position = Vector2( 805, 255 )
 script = ExtResource( 1 )
-health = 20
+health = 75
 speed = 100
-strength = 0
+strength = 1
 weapon_type = 1
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -47,8 +47,7 @@ position = Vector2( 1, 2 )
 shape = SubResource( 2 )
 
 [node name="Weapon" parent="." instance=ExtResource( 10 )]
-strength_multiplier = 1
-damage_multiplier = 0.6
+damage_multiplier = 0.8
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 2.0
